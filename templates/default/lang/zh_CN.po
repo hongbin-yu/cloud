@@ -1,0 +1,121 @@
+# 
+# Translators:
+# Chanson Xu <cutfoto@qq.com>, 2013
+# ps sj <puzzorsj@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: ProjectSend\n"
+"POT-Creation-Date: 2016-09-14 15:42-0300\n"
+"PO-Revision-Date: 2017-09-19 20:50+0000\n"
+"Last-Translator: ps sj <puzzorsj@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/subwaydesign/projectsend/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: template.php:15
+msgid "File downloads"
+msgstr "下载文件"
+
+#: template.php:43
+msgid "Search"
+msgstr "搜索"
+
+#: template.php:52
+msgid "All categories"
+msgstr "所有分类"
+
+#: template.php:59
+msgid "Filter"
+msgstr "过滤"
+
+#: template.php:72
+msgid "Selected files actions"
+msgstr "选择的文件操作"
+
+#: template.php:74
+msgid "Download zipped"
+msgstr "压缩下载"
+
+#: template.php:76
+msgid "Proceed"
+msgstr "已处理"
+
+#: template.php:85
+msgid "Showing"
+msgstr "展示"
+
+#: template.php:85
+msgid "files"
+msgstr "文件"
+
+#: template.php:95
+msgid "Your search keywords returned no results."
+msgstr "你搜索的关键字没有结果"
+
+#: template.php:100
+msgid "There are no files available."
+msgstr "当前没有文件。"
+
+#: template.php:112
+msgid "Title"
+msgstr "标题"
+
+#: template.php:113
+msgid "Ext."
+msgstr "其它"
+
+#: template.php:114
+msgid "Description"
+msgstr "描述"
+
+#: template.php:115
+msgid "Size"
+msgstr "大小"
+
+#: template.php:116
+msgid "Date"
+msgstr "日期"
+
+#: template.php:117
+msgid "Expiration date"
+msgstr "过期时间"
+
+#: template.php:118
+msgid "Image preview"
+msgstr "图片预览"
+
+#: template.php:119 template.php:235
+msgid "Download"
+msgstr "下载"
+
+#: template.php:192
+msgid "Never"
+msgstr "从不"
+
+#: template.php:205
+msgid "File expired"
+msgstr "文件已过期"
+
+#: template.php:249
+msgid "Results navigation"
+msgstr "结果导航"
+
+#: template.php:268
+msgid "Please select at least one file to proceed."
+msgstr "请至少选择一个文件以进行处理"
+
+#: template.php:283
+msgid "Please wait while your download is prepared."
+msgstr "请等待你的下载准备好"
+
+#: template.php:284
+msgid ""
+"This operation could take a few minutes, depending on the size of the files."
+msgstr "这个操作将会持续一段时间，这取决于文件的大小"
