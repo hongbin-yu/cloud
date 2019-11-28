@@ -26,7 +26,7 @@
 				/**
 				 * Password validation is optional only when editing a user.
 				 */
-				if ($user_form_type == 'edit_device' || $user_form_type == 'edit_device_self') {
+				if ($device_form_type == 'edit_device' || $device_form_type == 'edit_device_self') {
 			?>
 					// Only check password if any of the 2 fields is completed
 					var password_1 = $("#add_device_form_pass").val();
@@ -44,7 +44,7 @@
 
 			<?php
 				/** Close the jquery IF statement. */
-				if ($user_form_type == 'edit_user' || $user_form_type == 'edit_device_self') {
+				if ($device_form_type == 'edit_user' || $device_form_type == 'edit_device_self') {
 			?>
 					}
 			<?php
@@ -61,21 +61,21 @@
 switch ($device_form_type) {
 	case 'new_device':
 		$submit_value = __('Add device','cftp_admin');
-		$disable_user = false;
+		$disable_device = false;
 		$require_pass = true;
 		$form_action = 'devices-add.php';
 		$extra_fields = true;
 		break;
 	case 'edit_device':
 		$submit_value = __('Save device','cftp_admin');
-		$disable_user = true;
+		$disable_device = true;
 		$require_pass = false;
 		$form_action = 'devices-edit.php?id='.$user_id;
 		$extra_fields = true;
 		break;
 	case 'edit_device_self':
 		$submit_value = __('Update account','cftp_admin');
-		$disable_user = true;
+		$disable_device = true;
 		$require_pass = false;
 		$form_action = 'devices-edit.php?id='.$device_id;
 		$extra_fields = false;
@@ -198,7 +198,7 @@ switch ($device_form_type) {
 	</div>
 
 	<?php
-		if ($user_form_type == 'new_user') {
+		if ($device_form_type == 'new_device') {
 			$msg = __('This account information will be e-mailed to the address supplied above','cftp_admin');
 			echo system_message('info',$msg);
 		}

@@ -23,45 +23,50 @@ include('header.php');
  * Set checkboxes as 1 to defaul them to checked when first entering
  * the form
  */
-$add_user_data_active = 1;
-$add_user_data_notify_account = 1;
+$add_device_data_active = 1;
+$add_device_data_notify_account = 1;
 
 if ($_POST) {
-	$new_user = new UserActions();
+	$new_device = new DeviceActions();
 
 	/**
 	 * Clean the posted form values to be used on the user actions,
 	 * and again on the form if validation failed.
 	 */
-	$add_user_data_name = encode_html($_POST['add_user_form_name']);
-	$add_user_data_email = encode_html($_POST['add_user_form_email']);
-	$add_user_data_level = encode_html($_POST['add_user_form_level']);
-	$add_user_data_user = encode_html($_POST['add_user_form_user']);
-	$add_user_data_maxfilesize = (isset($_POST["add_user_form_maxfilesize"])) ? encode_html($_POST["add_user_form_maxfilesize"]) : '';
-	$add_user_data_active = (isset($_POST["add_user_form_active"])) ? 1 : 0;
-	$add_user_data_notify_account = (isset($_POST["add_user_form_notify_account"])) ? 1 : 0;
+	$add_device_data_name = encode_html($_POST['add_device_form_name']);
+	$add_device_data_email = encode_html($_POST['add_device_form_email']);
+	$add_device_data_level = encode_html($_POST['add_device_form_level']);
+	$add_device_data_device_id = encode_html($_POST['add_device_form_device_id']);
+	$add_device_data_maxusersize = (isset($_POST["add_device_form_maxusersize"])) ? encode_html($_POST["add_device_form_maxusersize"]) : '';
+	$add_device_data_active = (isset($_POST["add_device_form_active"])) ? 1 : 0;
+	$add_device_data_notify_account = (isset($_POST["add_device_form_notify_account"])) ? 1 : 0;
 
 	/** Arguments used on validation and user creation. */
 	$new_arguments = array(
 							'id' => '',
-							'username' => $add_user_data_user,
-							'password' => $_POST['add_user_form_pass'],
-							//'password_repeat' => $_POST['add_user_form_pass2'],
-							'name' => $add_user_data_name,
-							'email' => $add_user_data_email,
-							'role' => $add_user_data_level,
-							'active' => $add_user_data_active,
-							'max_file_size'	=> $add_user_data_maxfilesize,
-							'notify_account' => $add_user_data_notify_account,
-							'type' => 'new_user'
+							'device_id' => $add_device_data_device_id,
+							'password' => $_POST['add_device_form_pass'],
+							//'password_repeat' => $_POST['add_device_form_pass2'],
+							'ip' => $add_device_data_ip,
+							'mask' => $add_device_data_mask,
+							'supernode1' => $add_device_data_supernode1,		
+							'supernode2' => $add_device_data_supernode2,	
+							'domain' => $add_device_data_domain,								
+							'name' => $add_device_data_name,
+							'email' => $add_device_data_email,
+							'role' => $add_device_data_level,
+							'active' => $add_device_data_active,
+							'max_file_size'	=> $add_device_data_maxfilesize,
+							'notify_account' => $add_device_data_notify_account,
+							'type' => 'new_device'
 						);
 
 	/** Validate the information from the posted form. */
-	$new_validate = $new_user->validate_user($new_arguments);
+	$new_validate = $new_device->validate_device($new_arguments);
 	
 	/** Create the user if validation is correct. */
 	if ($new_validate == 1) {
-		$new_response = $new_user->create_user($new_arguments);
+		$new_response = $new_device->create_device($new_arguments);
 	}
 	
 }
@@ -91,9 +96,9 @@ if ($_POST) {
 							$new_log_action = new LogActions();
 							$log_action_args = array(
 													'action' => 2,
-													'owner_id' => CURRENT_USER_ID,
+													'owner_id' => CURRENT_device_ID,
 													'affected_account' => $new_response['new_id'],
-													'affected_account_name' => $add_user_data_name
+													'affected_account_name' => $add_device_data_name
 												);
 							$new_record_action = $new_log_action->log_action_save($log_action_args);
 	
