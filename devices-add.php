@@ -131,8 +131,8 @@ if ($_POST) {
 					 * If not $new_response is set, it means we are just entering for the first time.
 					 * Include the form.
 					 */
-					$user_form_type = 'new_user';
-					include('users-form.php');
+					$user_form_type = 'new_device';
+					include('devices-form.php');
 				}
 			?>
 
