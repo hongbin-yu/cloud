@@ -60,6 +60,7 @@
 <?php
 switch ($device_form_type) {
 	case 'new_device':
+	    $add_device_data_device_id = $generateRandomString(12);
 		$submit_value = __('Add device','cftp_admin');
 		$disable_device = false;
 		$require_pass = true;
@@ -70,7 +71,7 @@ switch ($device_form_type) {
 		$submit_value = __('Save device','cftp_admin');
 		$disable_device = true;
 		$require_pass = false;
-		$form_action = 'devices-edit.php?id='.$user_id;
+		$form_action = 'devices-edit.php?id='.$device_id;
 		$extra_fields = true;
 		break;
 	case 'edit_device_self':
@@ -93,7 +94,7 @@ switch ($device_form_type) {
 	<div class="form-group">
 		<label for="add_device_form_device_id" class="col-sm-4 control-label"><?php _e('Device ID','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_device_id" id="add_device_form_device_id" class="form-control <?php if (!$disable_device) { echo 'required'; } ?>" maxlength="<?php echo MAX_device_CHARS; ?>" value="<?php echo (isset($add_device_data_device)) ? html_output(stripslashes($add_device_data_device)) : ''; ?>" <?php if ($disable_device) { echo 'readonly'; } ?> placeholder="<?php _e("Must be alphanumeric",'cftp_admin'); ?>" />
+			<input type="text" name="add_device_form_device_id" id="add_device_form_device_id" class="form-control <?php if (!$disable_device) { echo 'required'; } ?>" maxlength="<?php echo MAX_device_CHARS; ?>" value="<?php echo (isset($add_device_data_device_id)) ? html_output(stripslashes($add_device_data_device_id)) : ''; ?>" <?php if ($disable_device) { echo 'readonly'; } ?> placeholder="<?php _e("Must be alphanumeric",'cftp_admin'); ?>" />
 		</div>
 	</div>
 
