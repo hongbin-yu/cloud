@@ -315,7 +315,7 @@ header("Pragma: no-cache");
 					}
 				}else {
 					header("HTTP/1.0 405 upload file not exists");
-					die();
+					die("upload file not exists");
 				}
 			}
 			else {

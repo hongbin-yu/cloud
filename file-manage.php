@@ -33,7 +33,7 @@ if (isset($headers['Authorization'])) {
 	$file = get_file_by_id($file_id);
 	$location = UPLOADED_FILES_FOLDER . $file_name;
 	if(empty($file) || !file_exists($location)) {
-		die('{"error":"File does not exists! id='.$file_id.$action.'"}');
+		die('{"error":"File does not exists!"}');
 	}else if($file['uploader'] != $global_account['username']) {
 		die('{"error":"uploader not match:'.$file["uploader"].'"}');
 	}else {
