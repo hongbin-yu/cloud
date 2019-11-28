@@ -13,9 +13,9 @@ if(!check_for_admin()) {
     return;
 }
 
-$active_nav = 'users';
+$active_nav = 'devices';
 
-$page_title = __('Add system user','cftp_admin');
+$page_title = __('Add device','cftp_admin');
 
 include('header.php');
 
@@ -89,14 +89,14 @@ if ($_POST) {
 					 */
 					switch ($new_response['query']) {
 						case 1:
-							$msg = __('User added correctly.','cftp_admin');
+							$msg = __('Device added correctly.','cftp_admin');
 							echo system_message('ok',$msg);
 	
 							/** Record the action log */
 							$new_log_action = new LogActions();
 							$log_action_args = array(
 													'action' => 2,
-													'owner_id' => CURRENT_device_ID,
+													'owner_id' => CURRENT_USER_ID,
 													'affected_account' => $new_response['new_id'],
 													'affected_account_name' => $add_device_data_name
 												);
@@ -131,7 +131,7 @@ if ($_POST) {
 					 * If not $new_response is set, it means we are just entering for the first time.
 					 * Include the form.
 					 */
-					$user_form_type = 'new_device';
+					$device_form_type = 'new_device';
 					include('devices-form.php');
 				}
 			?>
