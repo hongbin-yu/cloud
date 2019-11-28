@@ -190,6 +190,25 @@ class Validate_Form
 	}
 
 	/**
+	 * Check if the supplied device_idalready exists
+	 * 
+	 */
+	private function is_device_exists($field, $err)
+	{
+		$this->statement = $this->dbh->prepare( "SELECT * FROM " . TABLE_DEVICES . " WHERE device_id = :device_id" );
+		$this->statement->execute(
+							array(
+								':device_id'	=> $field,
+							)
+						);
+
+		if ( $this->statement->rowCount() > 0 ) {
+			$this->error_msg .= '<li>'.$err.'</li>';
+			$this->return_val = false;
+		}
+	}
+
+	/**
 	 * Check if the supplied e-mail address already is already assigned to 
 	 * either a client or a system user.
 	 */
@@ -261,6 +280,9 @@ class Validate_Form
 			break;
 			case 'user_exists':
 				$this->is_user_exists($field, $err);
+			break;
+			case 'device_exists':
+				$this->is_device_exists($field, $err);
 			break;
 			case 'email_exists':
 				$this->is_email_exists($field, $err, $current_id);
