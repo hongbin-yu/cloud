@@ -44,7 +44,7 @@
 
 			<?php
 				/** Close the jquery IF statement. */
-				if ($device_form_type == 'edit_user' || $device_form_type == 'edit_device_self') {
+				if ($device_form_type == 'edit_device' || $device_form_type == 'edit_device_self') {
 			?>
 					}
 			<?php
