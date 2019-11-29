@@ -60,7 +60,7 @@
 <?php
 switch ($device_form_type) {
 	case 'new_device':
-	    $add_device_data_device_id = $generateRandomString(12);
+	    $add_device_data_device_id = uniqid();//generateRandomString(12);
 		$submit_value = __('Add device','cftp_admin');
 		$disable_device = false;
 		$require_pass = true;
