@@ -172,11 +172,11 @@ if ( in_session_or_cookies( array( 9,8,7 ) ) )
 											),
 							);
 	$items['devices']		= array(
-								'nav'	=> 'cloud',
+								'nav'	=> 'devices',
 								'level'	=> array( 9 ),
 								'main'	=> array(
 												'label'	=> __('Devices', 'cftp_admin'),
-												'icon'	=> 'devices',
+												'icon'	=> 'cloud',
 											),
 								'sub'	=> array(
 												array(
