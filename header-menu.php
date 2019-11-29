@@ -171,6 +171,25 @@ if ( in_session_or_cookies( array( 9,8,7 ) ) )
 												),
 											),
 							);
+	$items['devices']		= array(
+								'nav'	=> 'devices',
+								'level'	=> array( 9 ),
+								'main'	=> array(
+												'label'	=> __('System Devices', 'cftp_admin'),
+												'icon'	=> 'devices',
+											),
+								'sub'	=> array(
+												array(
+													'label'	=> __('Add new', 'cftp_admin'),
+													'link'	=> 'devices-add.php',
+												),
+												array(
+													'label'	=> __('Manage system devices', 'cftp_admin'),
+													'link'	=> 'devices.php',
+													//'badge'	=> COUNT_USERS_INACTIVE,
+												),
+											),
+							);							
 
 	$items[]			= 'separator';
 
