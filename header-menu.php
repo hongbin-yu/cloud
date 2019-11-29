@@ -175,7 +175,7 @@ if ( in_session_or_cookies( array( 9,8,7 ) ) )
 								'nav'	=> 'devices',
 								'level'	=> array( 9 ),
 								'main'	=> array(
-												'label'	=> __('System Devices', 'cftp_admin'),
+												'label'	=> __('Devices', 'cftp_admin'),
 												'icon'	=> 'devices',
 											),
 								'sub'	=> array(
@@ -184,7 +184,7 @@ if ( in_session_or_cookies( array( 9,8,7 ) ) )
 													'link'	=> 'devices-add.php',
 												),
 												array(
-													'label'	=> __('Manage system devices', 'cftp_admin'),
+													'label'	=> __('Manage devices', 'cftp_admin'),
 													'link'	=> 'devices.php',
 													//'badge'	=> COUNT_USERS_INACTIVE,
 												),
