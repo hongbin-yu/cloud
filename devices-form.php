@@ -15,7 +15,7 @@
 
 			is_complete(this.add_device_form_name,'<?php echo $validation_no_name; ?>');
 			is_complete(this.add_device_form_device_id,'<?php echo $validation_no_device_id; ?>');
-			is_complete(this.add_device_form_email,'<?php echo $validation_no_email; ?>');
+			//is_complete(this.add_device_form_email,'<?php echo $validation_no_email; ?>');
 			is_complete(this.add_device_form_level,'<?php echo $validation_no_level; ?>');
 			is_length(this.add_device_form_device,<?php echo MIN_device_CHARS; ?>,<?php echo MAX_device_CHARS; ?>,'<?php echo $validation_length_user; ?>');
 			is_email(this.add_device_form_email,'<?php echo $validation_invalid_mail; ?>');
@@ -112,7 +112,7 @@ switch ($device_form_type) {
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="add_device_form_ip" class="col-sm-4 control-label"><?php _e('IP','cftp_admin'); ?></label>
+		<label for="add_device_form_ip" class="col-sm-4 control-label"><?php _e('Device IP','cftp_admin'); ?></label>
 		<div class="col-sm-8">
 			<input type="text" name="add_device_form_ip" id="add_device_form_ip" class="form-control required" value="<?php echo (isset($add_device_data_ip)) ? html_output(stripslashes($add_device_data_ip)) : ''; ?>" placeholder="<?php _e("Must be valid and unique",'cftp_admin'); ?>" />
 		</div>
@@ -136,12 +136,29 @@ switch ($device_form_type) {
 		</div>
 	</div>		
 	<div class="form-group">
-		<label for="add_device_form_email" class="col-sm-4 control-label"><?php _e('E-mail','cftp_admin'); ?></label>
+		<label for="add_device_form_contact" class="col-sm-4 control-label"><?php _e('Contact','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_email" id="add_device_form_email" class="form-control required" value="<?php echo (isset($add_device_data_email)) ? html_output(stripslashes($add_device_data_email)) : ''; ?>" placeholder="<?php _e("Must be valid and unique",'cftp_admin'); ?>" />
+			<input type="text" name="add_device_form_contact" id="add_device_form_contact" class="form-control required" value="<?php echo (isset($add_device_data_contact)) ? html_output(stripslashes($add_device_data_contact)) : ''; ?>" />
 		</div>
 	</div>
-
+	<div class="form-group">
+		<label for="add_device_form_phone" class="col-sm-4 control-label"><?php _e('Phone','cftp_admin'); ?></label>
+		<div class="col-sm-8">
+			<input type="text" name="add_device_form_phone" id="add_device_form_phone" class="form-control required" value="<?php echo (isset($add_device_data_phone)) ? html_output(stripslashes($add_device_data_phone)) : ''; ?>" />
+		</div>
+	</div>	
+	<div class="form-group">
+		<label for="add_device_form_email" class="col-sm-4 control-label"><?php _e('E-mail','cftp_admin'); ?></label>
+		<div class="col-sm-8">
+			<input type="text" name="add_device_form_email" id="add_device_form_email" class="form-control required" value="<?php echo (isset($add_device_data_email)) ? html_output(stripslashes($add_device_data_email)) : ''; ?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="add_device_form_address" class="col-sm-4 control-label"><?php _e('Address','cftp_admin'); ?></label>
+		<div class="col-sm-8">
+			<input type="text" name="add_device_form_address" id="add_device_form_phone" class="form-control required" value="<?php echo (isset($add_device_data_address)) ? html_output(stripslashes($add_device_data_address)) : ''; ?>" />
+		</div>
+	</div>	
 		<?php
 			if ($extra_fields == true) {
 		?>

@@ -3441,3 +3441,7 @@ msgstr "付节点"
 #: device-form.php:65
 msgid "Add device"
 msgstr "添加设备"
+
+#: device-form.php:160
+msgid "Max. usersize"
+msgstr "最多用户"
