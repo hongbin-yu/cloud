@@ -156,7 +156,7 @@ define('TABLE_DEVICES', TABLES_PREFIX . 'devices');
 $original_basic_tables = array(
 								TABLE_FILES,
 								TABLE_OPTIONS,
-								TABLE_USERS。
+								TABLE_USERS,
 								TABLE_DEVICES
 							);
 
