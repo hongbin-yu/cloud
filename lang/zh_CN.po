@@ -3409,3 +3409,39 @@ msgstr "选定的用户操作"
 #: users.php:271
 msgid "users"
 msgstr "用户"
+
+#: device-form.php :271
+msgid "devices"
+msgstr "设备"
+
+#: header-menu.php:188
+msgid "Manage devices"
+msgstr "管理设备"
+
+#: device-form.php:95
+msgid "Device ID"
+msgstr "设备 ID"
+
+#: device-form.php:115
+msgid "Device IP"
+msgstr "设备 IP 地址"
+
+#: device-form.php:121
+msgid "mask"
+msgstr "掩码"
+
+#: device-form.php:121
+msgid "mask"
+msgstr "掩码"
+
+#: device-form.php:127
+msgid "Supernode"
+msgstr "主节点"
+
+#: device-form.php:133
+msgid "Backup Supernode"
+msgstr "付节点"
+
+#: device-form.php:65
+msgid "Add device"
+msgstr "添加设备"

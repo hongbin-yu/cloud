@@ -157,13 +157,13 @@ switch ($device_form_type) {
 			</div>
 
 			<div class="form-group">
-				<label for="add_device_form_maxfilesize" class="col-sm-4 control-label"><?php _e('Max. upload filesize','cftp_admin'); ?></label>
+				<label for="add_device_form_maxusersize" class="col-sm-4 control-label"><?php _e('Max. usersize','cftp_admin'); ?></label>
 				<div class="col-sm-8">
 					<div class="input-group">
-						<input type="text" name="add_device_form_maxfilesize" id="add_device_form_maxfilesize" class="form-control" value="<?php echo (isset($add_device_data_maxfilesize)) ? html_output(stripslashes($add_device_data_maxfilesize)) : ''; ?>" />
-						<span class="input-group-addon">mb</span>
+						<input type="text" name="add_device_form_maxfilesize" id="add_device_form_maxfilesize" class="form-control" value="<?php echo (isset($add_device_data_maxusersize)) ? html_output(stripslashes($add_device_data_maxusersize)) : ''; ?>" />
+						<span class="input-group-addon"></span>
 					</div>
-					<p class="field_note"><?php _e("Set to 0 to use the default system limit",'cftp_admin'); ?> (<?php echo MAX_FILESIZE; ?> mb)</p>
+					<p class="field_note"><?php _e("Set to 0 to use the default system limit",'cftp_admin'); ?> (<?php echo MAX_FILESIZE; ?> )</p>
 				</div>
 			</div>
 

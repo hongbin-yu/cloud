@@ -268,7 +268,7 @@ include('header.php');
 		<div class="clear"></div>
 
 		<div class="form_actions_count">
-			<p><?php _e('Found','cftp_admin'); ?>: <span><?php echo $count_for_pagination; ?> <?php _e('users','cftp_admin'); ?></span></p>
+			<p><?php _e('Found','cftp_admin'); ?>: <span><?php echo $count_for_pagination; ?> <?php _e('devices','cftp_admin'); ?></span></p>
 		</div>
 
 		<div class="clear"></div>
