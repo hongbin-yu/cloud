@@ -3430,10 +3430,6 @@ msgstr "设备 IP 地址"
 msgid "mask"
 msgstr "掩码"
 
-#: device-form.php:121
-msgid "mask"
-msgstr "掩码"
-
 #: device-form.php:127
 msgid "Supernode"
 msgstr "主节点"
