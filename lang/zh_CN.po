@@ -1957,6 +1957,10 @@ msgstr "没有选择客户"
 msgid "Username was not completed"
 msgstr "用户没有填全"
 
+#: includes/vars.php:28 index.php:77
+msgid "Device ID was not completed"
+msgstr "设备ID没有填全"
+
 #: includes/vars.php:29 index.php:79
 msgid "Password was not completed"
 msgstr "密码没有填"

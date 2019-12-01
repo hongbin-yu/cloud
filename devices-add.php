@@ -3,7 +3,7 @@
  * Show the form to add a new system user.
  *
  * @package		ProjectSend
- * @subpackage	Users
+ * @subpackage	DEvices
  *
  */
 $allowed_levels = array(9);
@@ -37,6 +37,14 @@ if ($_POST) {
 	$add_device_data_email = encode_html($_POST['add_device_form_email']);
 	$add_device_data_level = encode_html($_POST['add_device_form_level']);
 	$add_device_data_device_id = encode_html($_POST['add_device_form_device_id']);
+	$add_device_data_ip = encode_html($_POST['add_device_form_ip']);
+	$add_device_data_mask = encode_html($_POST['add_device_form_mask']);
+	$add_device_data_supernode1 = encode_html($_POST['add_device_form_supernode1']);	
+	$add_device_data_supernode2 = encode_html($_POST['add_device_form_supernode2']);	
+	$add_device_data_domain = encode_html($_POST['add_device_form_domain']);	
+	$add_device_data_contact = encode_html($_POST['add_device_form_contact']);	
+	$add_device_data_phone = encode_html($_POST['add_device_form_phone']);
+	$add_device_data_address = encode_html($_POST['add_device_form_address']);		
 	$add_device_data_maxusersize = (isset($_POST["add_device_form_maxusersize"])) ? encode_html($_POST["add_device_form_maxusersize"]) : '';
 	$add_device_data_active = (isset($_POST["add_device_form_active"])) ? 1 : 0;
 	$add_device_data_notify_account = (isset($_POST["add_device_form_notify_account"])) ? 1 : 0;
@@ -53,10 +61,13 @@ if ($_POST) {
 							'supernode2' => $add_device_data_supernode2,	
 							'domain' => $add_device_data_domain,								
 							'name' => $add_device_data_name,
+							'contact' => $add_device_data_contact,
+							'phone' => $add_device_data_phone,
+							'address' => $add_device_data_address,							
 							'email' => $add_device_data_email,
 							'role' => $add_device_data_level,
 							'active' => $add_device_data_active,
-							'max_file_size'	=> $add_device_data_maxfilesize,
+							'max_user_size'	=> $add_device_data_maxusersize,
 							'notify_account' => $add_device_data_notify_account,
 							'type' => 'new_device'
 						);

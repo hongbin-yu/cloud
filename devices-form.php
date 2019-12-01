@@ -17,10 +17,10 @@
 			is_complete(this.add_device_form_device_id,'<?php echo $validation_no_device_id; ?>');
 			//is_complete(this.add_device_form_email,'<?php echo $validation_no_email; ?>');
 			is_complete(this.add_device_form_level,'<?php echo $validation_no_level; ?>');
-			is_length(this.add_device_form_device,<?php echo MIN_DEVICE_CHARS; ?>,<?php echo MAX_DEVICE_CHARS; ?>,'<?php echo $validation_length_device; ?>');
+			is_length(this.add_device_form_device,<?php echo MIN_USER_CHARS; ?>,<?php echo MAX_USER_CHARS; ?>,'<?php echo $validation_length_user; ?>');
 			is_email(this.add_device_form_email,'<?php echo $validation_invalid_mail; ?>');
 			is_alpha_or_dot(this.add_device_form_device,'<?php echo $validation_alpha_device; ?>');
-			is_number(this.add_device_form_maxusersize,'<?php echo $validation_file_size; ?>');
+			is_number(this.add_device_form_maxusersize,'<?php echo $validation_user_size; ?>');
 			
 			<?php
 				/**

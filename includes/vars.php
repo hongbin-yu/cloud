@@ -20,6 +20,7 @@ define('USER_ROLE_LVL_0', __('Client','cftp_admin'));
  */
 $validation_recaptcha		= __('reCAPTCHA verification failed','cftp_admin');
 $validation_no_name			= __('Name was not completed','cftp_admin');
+$validation_no_device_id	= __('Device ID was not completed','cftp_admin');
 $validation_no_client		= __('No client was selected','cftp_admin');
 $validation_no_user			= __('Username was not completed','cftp_admin');
 $validation_no_pass			= __('Password was not completed','cftp_admin');
@@ -31,6 +32,7 @@ $validation_alpha_pass		= __('Password must be alphanumeric (a-z,A-Z,0-9 allowed
 $validation_match_pass		= __('Passwords do not match','cftp_admin');
 $validation_rules_pass		= __('Password does not meet the required characters rules','cftp_admin');
 $validation_file_size		= __('File size value must be a whole number','cftp_admin');
+$validation_user_size		= __('User size value must be a whole number','cftp_admin');
 $validation_no_level		= __('User level was not specified','cftp_admin');
 $add_user_exists			= __('A system user or client with this login name already exists.','cftp_admin');
 $add_user_mail_exists		= __('A system user or client with this e-mail address already exists.','cftp_admin');
@@ -48,6 +50,7 @@ $validation_length_1 = __('length should be between','cftp_admin');
 $validation_length_2 = __('and','cftp_admin');
 $validation_length_3 = __('characters long','cftp_admin');
 $validation_length_user = $validation_length_usr_1.' '.$validation_length_1.' '.MIN_USER_CHARS.' '.$validation_length_2.' '.MAX_USER_CHARS.' '.$validation_length_3;
+$validation_length_device = $validation_length_usr_1.' '.$validation_length_1.' '.MIN_USER_CHARS.' '.$validation_length_2.' '.MAX_USER_CHARS.' '.$validation_length_3;
 $validation_length_pass = $validation_length_pass_1.' '.$validation_length_1.' '.MIN_PASS_CHARS.' '.$validation_length_2.' '.MAX_PASS_CHARS.' '.$validation_length_3;
 
 $validation_req_upper	= __('1 uppercase character','cftp_admin');
