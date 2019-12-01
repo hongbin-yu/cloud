@@ -3414,6 +3414,10 @@ msgstr "用户"
 msgid "devices"
 msgstr "设备"
 
+#: device-form.php :186
+msgid "Devices"
+msgstr "云设备"
+
 #: header-menu.php:188
 msgid "Manage devices"
 msgstr "管理设备"
@@ -3445,3 +3449,12 @@ msgstr "添加设备"
 #: device-form.php:160
 msgid "Max. usersize"
 msgstr "最多用户"
+
+#: device-form.php:139
+msgid "Contact"
+msgstr "联系人"
+
+#: device-form.php:145
+msgid "Phone"
+msgstr "电话号码"
+
