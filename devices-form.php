@@ -183,7 +183,7 @@ switch ($device_form_type) {
 				<label for="add_device_form_maxusersize" class="col-sm-4 control-label"><?php _e('Max. usersize','cftp_admin'); ?></label>
 				<div class="col-sm-8">
 					<div class="input-group">
-						<input type="text" name="add_device_form_maxfilesize" id="add_device_form_maxfilesize" class="form-control" value="<?php echo (isset($add_device_data_maxusersize)) ? html_output(stripslashes($add_device_data_maxusersize)) : ''; ?>" />
+						<input type="text" name="add_device_form_maxusersize" id="add_device_form_maxusersize" class="form-control" value="<?php echo (isset($add_device_data_maxusersize)) ? html_output(stripslashes($add_device_data_maxusersize)) : ''; ?>" />
 						<span class="input-group-addon"></span>
 					</div>
 					<p class="field_note"><?php _e("Set to 0 to use the default system limit",'cftp_admin'); ?> (<?php echo MAX_FILESIZE; ?> )</p>
