@@ -186,9 +186,10 @@ $all_system_tables = array(
  */
 define('MIN_USER_CHARS', 5);
 define('MAX_USER_CHARS', 60);
+define('MIN_DEVICE_CHARS', 5);
+define('MAX_DEVICE_CHARS', 60);
 define('MIN_PASS_CHARS', 5);
 define('MAX_PASS_CHARS', 60);
-define('MAX_DEVICE_CHARS', 12);
 define('MAX_SUPERNODE_CHARS', 20);
 
 

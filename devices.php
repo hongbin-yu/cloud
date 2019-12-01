@@ -20,7 +20,7 @@ if(!check_for_admin()) {
 
 $active_nav = 'devices';
 
-$page_title = __('Devices administration','cftp_admin');
+$page_title = __('Manage devices','cftp_admin');
 include('header.php');
 ?>
 
