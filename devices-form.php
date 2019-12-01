@@ -114,7 +114,7 @@ switch ($device_form_type) {
 	<div class="form-group">
 		<label for="add_device_form_ip" class="col-sm-4 control-label"><?php _e('Device IP','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_ip" id="add_device_form_ip" class="form-control required" value="<?php echo (isset($add_device_data_ip)) ? html_output(stripslashes($add_device_data_ip)) : ''; ?>" placeholder="<?php _e("Must be valid and unique",'cftp_admin'); ?>" />
+			<input type="text" name="add_device_form_ip" id="add_device_form_ip" class="form-control required" value="<?php echo (isset($add_device_data_ip)) ? html_output(stripslashes($add_device_data_ip)) : ''; ?>" placeholder="10.7.0.10" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -134,29 +134,35 @@ switch ($device_form_type) {
 		<div class="col-sm-8">
 			<input type="text" name="add_device_form_supernode2" id="add_device_form_supernode2" class="form-control required" value="<?php echo (isset($add_device_data_supernode2)) ? html_output(stripslashes($add_device_data_supernode2)) : ''; ?>" placeholder="<?php _e("ip:port",'cftp_admin'); ?>" />
 		</div>
-	</div>		
+	</div>
+	<div class="form-group">
+		<label for="add_device_form_domain" class="col-sm-4 control-label"><?php _e('Domain','cftp_admin'); ?></label>
+		<div class="col-sm-8">
+			<input type="text" name="add_device_form_domain" id="add_device_form_domain" class="form-control" value="<?php echo (isset($add_device_data_supernode2)) ? html_output(stripslashes($add_device_data_domain)) : ''; ?>" placeholder="<?php _e("?.dajana.cn",'cftp_admin'); ?>" />
+		</div>
+	</div>			
 	<div class="form-group">
 		<label for="add_device_form_contact" class="col-sm-4 control-label"><?php _e('Contact','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_contact" id="add_device_form_contact" class="form-control required" value="<?php echo (isset($add_device_data_contact)) ? html_output(stripslashes($add_device_data_contact)) : ''; ?>" />
+			<input type="text" name="add_device_form_contact" id="add_device_form_contact" class="form-control" value="<?php echo (isset($add_device_data_contact)) ? html_output(stripslashes($add_device_data_contact)) : ''; ?>" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="add_device_form_phone" class="col-sm-4 control-label"><?php _e('Phone','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_phone" id="add_device_form_phone" class="form-control required" value="<?php echo (isset($add_device_data_phone)) ? html_output(stripslashes($add_device_data_phone)) : ''; ?>" />
+			<input type="text" name="add_device_form_phone" id="add_device_form_phone" class="form-control" value="<?php echo (isset($add_device_data_phone)) ? html_output(stripslashes($add_device_data_phone)) : ''; ?>" />
 		</div>
 	</div>	
 	<div class="form-group">
 		<label for="add_device_form_email" class="col-sm-4 control-label"><?php _e('E-mail','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_email" id="add_device_form_email" class="form-control required" value="<?php echo (isset($add_device_data_email)) ? html_output(stripslashes($add_device_data_email)) : ''; ?>" />
+			<input type="text" name="add_device_form_email" id="add_device_form_email" class="form-control" value="<?php echo (isset($add_device_data_email)) ? html_output(stripslashes($add_device_data_email)) : ''; ?>" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="add_device_form_address" class="col-sm-4 control-label"><?php _e('Address','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_address" id="add_device_form_phone" class="form-control required" value="<?php echo (isset($add_device_data_address)) ? html_output(stripslashes($add_device_data_address)) : ''; ?>" />
+			<input type="text" name="add_device_form_address" id="add_device_form_phone" class="form-control" value="<?php echo (isset($add_device_data_address)) ? html_output(stripslashes($add_device_data_address)) : ''; ?>" />
 		</div>
 	</div>	
 		<?php

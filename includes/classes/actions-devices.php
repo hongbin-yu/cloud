@@ -110,15 +110,19 @@ class DeviceActions
 		$this->password		= $arguments['password'];
 		$this->ip		= $arguments['ip'];	
 		$this->mask		= $arguments['mask'];	
+		$this->macaddress		= $arguments['macaddress'];
 		$this->supernode1		= $arguments['supernode1'];		
 		$this->supernode2		= $arguments['supernode2'];
 		$this->domain		= $arguments['domain'];			
 		$this->name				= encode_html($arguments['name']);
+		$this->contact				= encode_html($arguments['contact']);
+		$this->phone				= encode_html($arguments['phone']);
+		$this->address				= encode_html($arguments['address']);		
 		$this->email			= encode_html($arguments['email']);
 		$this->role				= $arguments['role'];
 		$this->active			= $arguments['active'];
 		$this->notify_account           = ( $arguments['notify_account'] == '1' ) ? 1 : 0;
-		$this->max_user_size	= ( !empty( $arguments['max_file_size'] ) ) ? $arguments['max_file_size'] : 255;
+		$this->max_user_size	= ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 255;
 		//$this->enc_password = md5(mysql_real_escape_string($this->password));
 		$this->enc_password	= $hasher->HashPassword($this->password);
 
@@ -127,20 +131,24 @@ class DeviceActions
 			$this->state['hash'] = 1;
 
 			$this->timestamp = time();
-			$this->sql_query = $this->dbh->prepare("INSERT INTO " . TABLE_DEVICES . " (device_id,password,ip,mask,supernode1,supernode2,domain,name,email,level,active,max_user_size)"
-												." VALUES (:device_id, :password,:ip,:mask,supernode1,:supernode2,:domain, :name, :email, :role, :active, :max_user_size)");
+			$this->sql_query = $this->dbh->prepare("INSERT INTO " . TABLE_DEVICES . " (device_id,password,ip,mask.macaddress,supernode1,supernode2,domain,name,contact,phone,address,email,level,active,max_user_size)"
+												." VALUES (:device_id, :password,:ip,:mask,macaddress,supernode1,:supernode2,:domain, :name,:contact,:phone,:address, :email, :role, :active, :max_user_size)");
 			$this->sql_query->bindParam(':device_id', $this->device_id);
 			$this->sql_query->bindParam(':password', $this->enc_password);
 			$this->sql_query->bindParam(':ip', $this->ip);
 			$this->sql_query->bindParam(':mask', $this->mask);
+			$this->sql_query->bindParam(':macaddress', $this->macaddress);			
 			$this->sql_query->bindParam(':supernode1', $this->supernode1);
 			$this->sql_query->bindParam(':supernode2', $this->supernode2);	
 			$this->sql_query->bindParam(':domain', $this->domain);			
 			$this->sql_query->bindParam(':name', $this->name);
+			$this->sql_query->bindParam(':contact', $this->conact);
+			$this->sql_query->bindParam(':phone', $this->phone);
+			$this->sql_query->bindParam(':address', $this->address);		
 			$this->sql_query->bindParam(':email', $this->email);
 			$this->sql_query->bindParam(':role', $this->role);
 			$this->sql_query->bindParam(':active', $this->active, PDO::PARAM_INT);
-			$this->sql_query->bindParam(':max_file_size', $this->max_file_size, PDO::PARAM_INT);
+			$this->sql_query->bindParam(':max_user_size', $this->max_user_size, PDO::PARAM_INT);
 
 			$this->sql_query->execute();
 
@@ -153,7 +161,7 @@ class DeviceActions
 				$this->email_arguments = array(
 												'type'		=> 'new_user',
 												'address'	=> $this->email,
-												'username'	=> $this->username,
+												'device_id'	=> $this->device_id,
 												'password'	=> $this->password
 											);
 				if ($this->notify_account == 1) {
@@ -193,10 +201,12 @@ class DeviceActions
 		$this->id				= $arguments['id'];
 		$this->ip		= $arguments['ip'];	
 		$this->mask		= $arguments['mask'];	
+		$this->macaddress	= $arguments['macaddress'];			
 		$this->supernode1		= $arguments['supernode1'];		
 		$this->supernode2		= $arguments['supernode2'];
 		$this->domain		= $arguments['domain'];	
 		$this->name				= encode_html($arguments['name']);
+		
 		$this->email			= encode_html($arguments['email']);
 		$this->role				= $arguments['role'];
 		$this->active			= ( $arguments['active'] == '1' ) ? 1 : 0;
@@ -213,10 +223,14 @@ class DeviceActions
 			$this->edit_user_query = "UPDATE " . TABLE_USERS . " SET
 									ip = :ip,
 									mask = :mask,
+									macaddress = :macaddress,									
 									supernode1 = :supernode1
 									supernode2 = :supernode2
 									domain = :domain,
 									name = :name,
+									contact = :contact,
+									phone = :phone,
+									address = :address,
 									email = :email,
 									level = :level,
 									active = :active,
@@ -233,10 +247,14 @@ class DeviceActions
 			$this->sql_query = $this->dbh->prepare( $this->edit_user_query );
 			$this->sql_query->bindParam(':ip', $this->ip);
 			$this->sql_query->bindParam(':mask', $this->mask);
+			$this->sql_query->bindParam(':macaddress', $this->macaddress);			
 			$this->sql_query->bindParam(':supernode1', $this->supernode1);
 			$this->sql_query->bindParam(':supernode2', $this->supernode2);	
 			$this->sql_query->bindParam(':domain', $this->domain);	
 			$this->sql_query->bindParam(':name', $this->name);
+			$this->sql_query->bindParam(':contact', $this->conact);
+			$this->sql_query->bindParam(':phone', $this->phone);
+			$this->sql_query->bindParam(':address', $this->address);			
 			$this->sql_query->bindParam(':email', $this->email);
 			$this->sql_query->bindParam(':level', $this->role);
 			$this->sql_query->bindParam(':active', $this->active, PDO::PARAM_INT);
@@ -269,11 +287,11 @@ class DeviceActions
 	function delete_device($device_id)
 	{
 		$this->check_level = array(9);
-		if (isset($user_id)) {
+		if (isset($device_id)) {
 			/** Do a permissions check */
 			if (isset($this->check_level) && in_session_or_cookies($this->check_level)) {
-				$this->sql = $this->dbh->prepare('DELETE FROM ' . TABLE_USERS . ' WHERE id=:id');
-				$this->sql->bindParam(':id', $user_id, PDO::PARAM_INT);
+				$this->sql = $this->dbh->prepare('DELETE FROM ' . TABLE_DEVICES . ' WHERE id=:id');
+				$this->sql->bindParam(':id', $device_id, PDO::PARAM_INT);
 				$this->sql->execute();
 			}
 		}
@@ -285,12 +303,12 @@ class DeviceActions
 	function change_device_active_status($device_id,$change_to)
 	{
 		$this->check_level = array(9);
-		if (isset($user_id)) {
+		if (isset($device_id)) {
 			/** Do a permissions check */
 			if (isset($this->check_level) && in_session_or_cookies($this->check_level)) {
-				$this->sql = $this->dbh->prepare('UPDATE ' . TABLE_USERS . ' SET active=:active_state WHERE id=:id');
+				$this->sql = $this->dbh->prepare('UPDATE ' . TABLE_DEVICES . ' SET active=:active_state WHERE id=:id');
 				$this->sql->bindParam(':active_state', $change_to, PDO::PARAM_INT);
-				$this->sql->bindParam(':id', $user_id, PDO::PARAM_INT);
+				$this->sql->bindParam(':id', $device_id, PDO::PARAM_INT);
 				$this->sql->execute();
 			}
 		}

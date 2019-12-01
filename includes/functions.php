@@ -409,6 +409,94 @@ function get_client_by_id($client)
 	}
 }
 
+/**
+ * Get all the device information knowing only the id
+ * Used on the Manage files page.
+ *
+ * @return array
+ */
+function get_device_by_id($id)
+{
+	global $dbh;
+	$statement = $dbh->prepare("SELECT * FROM " . TABLE_DEVICESS . " WHERE id=:id");
+	$statement->bindParam(':id', $id, PDO::PARAM_INT);
+	$statement->execute();
+	$statement->setFetchMode(PDO::FETCH_ASSOC);
+
+	while ( $row = $statement->fetch() ) {
+		$information = array(
+							'id'					=> html_output($row['id']),
+							'device_id'			=> html_output($row['device_id']),
+							'password'			=> html_output($row['password']),
+							'ip'			=> html_output($row['ip']),
+							'mask'			=> html_output($row['device_id']),
+							'supernode1'			=> html_output($row['supernode1']),
+							'supernode2'			=> html_output($row['supernode2']),							
+							'name'				=> html_output($row['name']),
+							'address'			=> html_output($row['address']),
+							'phone'				=> html_output($row['phone']),
+							'email'				=> html_output($row['email']),
+							'notify'				=> html_output($row['notify']),
+							'level'				=> html_output($row['level']),
+							'active'				=> html_output($row['active']),
+							'max_user_size'	=> html_output($row['max_user_size']),
+							'contact'			=> html_output($row['contact']),
+							'created_date'		=> html_output($row['timestamp']),
+							'created_by'		=> html_output($row['created_by'])
+						);
+		if ( !empty( $information ) ) {
+			return $information;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+/**
+ * Get all the device information knowing only the id
+ * Used on the Manage files page.
+ *
+ * @return array
+ */
+function get_device_by_device_id($device_id)
+{
+	global $dbh;
+	$statement = $dbh->prepare("SELECT * FROM " . TABLE_DEVICESS . " WHERE device_id=:id");
+	$statement->bindParam(':id', $device_id, PDO::PARAM_INT);
+	$statement->execute();
+	$statement->setFetchMode(PDO::FETCH_ASSOC);
+
+	while ( $row = $statement->fetch() ) {
+		$information = array(
+							'id'					=> html_output($row['id']),
+							'device_id'			=> html_output($row['device_id']),
+							'password'			=> html_output($row['password']),
+							'ip'			=> html_output($row['ip']),
+							'mask'			=> html_output($row['device_id']),
+							'supernode1'			=> html_output($row['supernode1']),
+							'supernode2'			=> html_output($row['supernode2']),							
+							'name'				=> html_output($row['name']),
+							'address'			=> html_output($row['address']),
+							'phone'				=> html_output($row['phone']),
+							'email'				=> html_output($row['email']),
+							'notify'				=> html_output($row['notify']),
+							'level'				=> html_output($row['level']),
+							'active'				=> html_output($row['active']),
+							'max_user_size'	=> html_output($row['max_user_size']),
+							'contact'			=> html_output($row['contact']),
+							'created_date'		=> html_output($row['timestamp']),
+							'created_by'		=> html_output($row['created_by'])
+						);
+		if ( !empty( $information ) ) {
+			return $information;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
 
 /**
  * Get all the client information knowing only the log in username

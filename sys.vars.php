@@ -156,7 +156,8 @@ define('TABLE_DEVICES', TABLES_PREFIX . 'devices');
 $original_basic_tables = array(
 								TABLE_FILES,
 								TABLE_OPTIONS,
-								TABLE_USERS
+								TABLE_USERS。
+								TABLE_DEVICES
 							);
 
 $all_system_tables = array(
@@ -166,6 +167,7 @@ $all_system_tables = array(
 							'notifications',
 							'options',
 							'users',
+							'devices',
 							'groups',
 							'members',
 							'members_requests',
