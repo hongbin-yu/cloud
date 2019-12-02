@@ -103,7 +103,7 @@ include('header.php');
 						//if ($work_device != $my_info['id']) {
 							$this_device = new DeviceActions();
 							$delete_device = $this_device->delete_device($work_device);
-							$affected_users++;
+							$affected_devices++;
 						//}
 						//else {
 						//	$msg = __('You cannot delete your own account.','cftp_admin');
