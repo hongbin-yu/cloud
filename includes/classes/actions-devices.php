@@ -256,7 +256,7 @@ class DeviceActions
 			$this->sql_query->bindParam(':level', $this->role);
 			$this->sql_query->bindParam(':active', $this->active, PDO::PARAM_INT);
 			$this->sql_query->bindParam(':max_user_size', $this->max_user_size, PDO::PARAM_INT);
-			$this->sql_query->bindParam(':id', $this->id, PDO::PARAM_INT);
+			//$this->sql_query->bindParam(':id', $this->id, PDO::PARAM_INT);
 			if (!empty($arguments['password'])) {
 				$this->sql_query->bindParam(':password', $this->enc_password);
 			}
