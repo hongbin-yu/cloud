@@ -195,7 +195,7 @@ include('header.php');
 
 	<div class="form_actions_left">
 		<div class="form_actions_limit_results">
-			<?php show_search_form('users.php'); ?>
+			<?php show_search_form('devices.php'); ?>
 
 			<form action="devices.php" name="devices_filters" method="get" class="form-inline">
 				<?php form_add_existing_parameters( array('active', 'role', 'action') ); ?>
@@ -238,13 +238,13 @@ include('header.php');
 		</div>
 	</div>
 
-	<form action="devices.php" name="users_list" method="get" class="form-inline">
+	<form action="devices.php" name="devices_list" method="get" class="form-inline">
 		<?php form_add_existing_parameters(); ?>
 		<div class="form_actions_right">
 			<div class="form_actions">
 				<div class="form_actions_submit">
 					<div class="form-group group_float">
-						<label class="control-label hidden-xs hidden-sm"><i class="glyphicon glyphicon-check"></i> <?php _e('Selected users actions','cftp_admin'); ?>:</label>
+						<label class="control-label hidden-xs hidden-sm"><i class="glyphicon glyphicon-check"></i> <?php _e('Selected devices actions','cftp_admin'); ?>:</label>
 						<select name="action" id="action" class="txtfield form-control">
 							<?php
 								$actions_options = array(
@@ -334,8 +334,8 @@ include('header.php');
 											),
 											array(
 												'sortable'		=> true,
-												'sort_url'		=> 'max_file_size',
-												'content'		=> __('Max. upload size','cftp_admin'),
+												'sort_url'		=> 'max_user_size',
+												'content'		=> __('Max. user size','cftp_admin'),
 												'hide'			=> 'phone',
 											),
 											array(
@@ -383,15 +383,15 @@ include('header.php');
 					/**
 					 * Add the cells to the row
 					 */
-					if ( $row['id'] == 1 ) {
-						$cell = array( 'content' => '' );
-					}
-					else {
+					//if ( $row['id'] == 1 ) {
+					//	$cell = array( 'content' => '' );
+					//}
+					//else {
 						$cell = array(
 									'checkbox'		=> true,
 									'value'			=> $row["id"],
 									);
-					}
+					//}
 					$tbody_cells = array(
 											$cell,
 											array(
