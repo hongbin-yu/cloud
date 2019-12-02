@@ -10,12 +10,12 @@
 /**
  * System User Roles names
  */
-/*
+
 define('USER_ROLE_LVL_9', __('System Administrator','cftp_admin'));
 define('USER_ROLE_LVL_8', __('Account Manager','cftp_admin'));
 define('USER_ROLE_LVL_7', __('Uploader','cftp_admin'));
 define('USER_ROLE_LVL_0', __('Client','cftp_admin'));
-*/
+
 /**
  * Validation class strings
  */
