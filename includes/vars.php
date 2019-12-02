@@ -10,11 +10,12 @@
 /**
  * System User Roles names
  */
+/*
 define('USER_ROLE_LVL_9', __('System Administrator','cftp_admin'));
 define('USER_ROLE_LVL_8', __('Account Manager','cftp_admin'));
 define('USER_ROLE_LVL_7', __('Uploader','cftp_admin'));
 define('USER_ROLE_LVL_0', __('Client','cftp_admin'));
-
+*/
 /**
  * Validation class strings
  */
@@ -35,6 +36,7 @@ $validation_file_size		= __('File size value must be a whole number','cftp_admin
 $validation_user_size		= __('User size value must be a whole number','cftp_admin');
 $validation_no_level		= __('User level was not specified','cftp_admin');
 $add_user_exists			= __('A system user or client with this login name already exists.','cftp_admin');
+$add_device_exists			= __('A device already exists.','cftp_admin');
 $add_user_mail_exists		= __('A system user or client with this e-mail address already exists.','cftp_admin');
 $validation_valid_pass		= __('Your password can only contain letters, numbers and the following characters:','cftp_admin');
 $validation_valid_chars		= ('` ! " ? $ ? % ^ & * ( ) _ - + = { [ } ] : ; @ ~ # | < , > . ? \' / \ ');
