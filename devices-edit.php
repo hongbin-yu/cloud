@@ -8,9 +8,9 @@
  */
 $allowed_levels = array(9,8,7);
 require_once('sys.includes.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 $active_nav = 'devices';
 
 /** Create the object */
@@ -181,7 +181,7 @@ include('header.php');
 		if (isset($_GET['status'])) {
 			switch ($_GET['status']) {
 				case 1:
-					$msg = __('User edited correctly.','cftp_admin');
+					$msg = __('Device edited correctly.','cftp_admin');
 					echo system_message('ok',$msg);
 
 					$saved_device = get_device_by_id($device_id);
@@ -219,12 +219,12 @@ include('header.php');
 			<?php
 				$direct_access_error = __('This page is not intended to be accessed directly.','cftp_admin');
 				if ($page_status === 0) {
-					$msg = __('No user was selected.','cftp_admin');
+					$msg = __('No device was selected.','cftp_admin');
 					echo system_message('error',$msg);
 					echo '<p>'.$direct_access_error.'</p>';
 				}
 				else if ($page_status === 2) {
-					$msg = __('There is no user with that ID number.','cftp_admin');
+					$msg = __('There is no device with that ID number.','cftp_admin');
 					echo system_message('error',$msg);
 					echo '<p>'.$direct_access_error.'</p>';
 				}
