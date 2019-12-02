@@ -124,7 +124,7 @@ class DeviceActions
 		$this->notify_account           = ( $arguments['notify_account'] == '1' ) ? 1 : 0;
 		$this->max_user_size	= ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 255;
 		//$this->enc_password = md5(mysql_real_escape_string($this->password));
-		$this->enc_password	= $hasher->HashPassword($this->password);
+		$this->enc_password	= $this->password;//$hasher->HashPassword($this->password);
 
 		if (strlen($this->enc_password) >= 20) {
 
@@ -213,7 +213,7 @@ class DeviceActions
 		$this->password		= $arguments['password'];
 		$this->max_file_size	= ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 0;
 		//$this->enc_password = md5(mysql_real_escape_string($this->password));
-		$this->enc_password 	= $hasher->HashPassword($this->password);
+		$this->enc_password 	= $this->password;//$hasher->HashPassword($this->password);
 
 		if (strlen($this->enc_password) >= 20) {
 
@@ -244,12 +244,6 @@ class DeviceActions
 			$this->edit_user_query .= " WHERE id = :id";
 
 			$this->sql_query = $this->dbh->prepare( $this->edit_user_query );
-			$this->sql_query->bindParam(':ip', $this->ip);
-			$this->sql_query->bindParam(':mask', $this->mask);
-/*			$this->sql_query->bindParam(':macaddress', $this->macaddress);		*/	
-			$this->sql_query->bindParam(':supernode1', $this->supernode1);
-			$this->sql_query->bindParam(':supernode2', $this->supernode2);	
-			$this->sql_query->bindParam(':domain', $this->domain);	
 			$this->sql_query->bindParam(':name', $this->name);
 			$this->sql_query->bindParam(':contact', $this->conact);
 			$this->sql_query->bindParam(':phone', $this->phone);
