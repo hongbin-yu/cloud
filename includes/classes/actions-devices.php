@@ -213,7 +213,7 @@ class DeviceActions
 		$this->role				= $arguments['role'];
 		$this->active			= ( $arguments['active'] == '1' ) ? 1 : 0;
 		$this->password		= $arguments['password'];
-		$this->max_user_size	= 0;//( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 0;
+		$this->max_user_size	= ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 0;
 		//$this->enc_password = md5(mysql_real_escape_string($this->password));
 		$this->enc_password 	= $this->password;//$hasher->HashPassword($this->password);
 
@@ -259,7 +259,7 @@ class DeviceActions
 			$this->sql_query->bindParam(':level', $this->role);
 			$this->sql_query->bindParam(':active', $this->active, PDO::PARAM_INT);
 			$this->sql_query->bindParam(':max_user_size', $this->max_user_size, PDO::PARAM_INT);
-			//$this->sql_query->bindParam(':id', $this->id, PDO::PARAM_INT);
+			$this->sql_query->bindParam(':id', $this->id, PDO::PARAM_INT);
 			if (!empty($arguments['password'])) {
 				$this->sql_query->bindParam(':password', $this->enc_password);
 			}
