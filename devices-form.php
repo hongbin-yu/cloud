@@ -126,7 +126,7 @@ switch ($device_form_type) {
 	<div class="form-group">
 		<label for="add_device_form_supernode1" class="col-sm-4 control-label"><?php _e('Supernode','cftp_admin'); ?></label>
 		<div class="col-sm-8">
-			<input type="text" name="add_device_form_supernode2" id="add_device_form_supernode1" class="form-control required" value="<?php echo (isset($add_device_data_supernode1)) ? html_output(stripslashes($add_device_data_supernode1)) : ''; ?>" placeholder="<?php _e("ip:port",'cftp_admin'); ?>" />
+			<input type="text" name="add_device_form_supernode1" id="add_device_form_supernode1" class="form-control required" value="<?php echo (isset($add_device_data_supernode1)) ? html_output(stripslashes($add_device_data_supernode1)) : ''; ?>" placeholder="<?php _e("ip:port",'cftp_admin'); ?>" />
 		</div>
 	</div>	
 	<div class="form-group">

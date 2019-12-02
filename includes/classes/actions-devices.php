@@ -34,7 +34,7 @@ class DeviceActions
 		//$this->password_repeat = $arguments['password_repeat'];
 		$this->role = $arguments['role'];
 		$this->notify_account = $arguments['notify_account'];
-		$this->max_user_size = ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_fuser_size'] : 255;
+		$this->max_user_size = ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 255;
 		$this->type = $arguments['type'];
 
 		/**
@@ -51,14 +51,14 @@ class DeviceActions
 		 * Validations for NEW USER submission only.
 		 */
 		if ($this->type == 'new_device') {
-			$this->devie_id = $arguments['devie_id'];
+			$this->device_id = $arguments['device_id'];
 
 			//$valid_me->validate('email_exists',$this->email,$add_user_mail_exists);
 			/** devie_id checks */
-			$valid_me->validate('device_exists',$this->devie_id,$add_device_exists);
-			$valid_me->validate('completed',$this->devie_id,$validation_no_devie);
+			$valid_me->validate('device_exists',$this->device_id,$add_device_exists);
+			$valid_me->validate('completed',$this->devie_id,$validation_no_device);
 			$valid_me->validate('alpha_dot',$this->devie_id,$validation_alpha_device);
-			$valid_me->validate('length',$this->devie_id,$validation_length_user,MIN_USER_CHARS,MAX_USER_CHARS);
+			$valid_me->validate('length',$this->device_id,$validation_length_user,MIN_USER_CHARS,MAX_USER_CHARS);
 
 			$this->validate_password = true;
 		}
