@@ -437,7 +437,7 @@ function get_client_by_id($client)
 function get_device_by_id($id)
 {
 	global $dbh;
-	$statement = $dbh->prepare("SELECT * FROM " . TABLE_DEVICESS . " WHERE id=:id");
+	$statement = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE id=:id");
 	$statement->bindParam(':id', $id, PDO::PARAM_INT);
 	$statement->execute();
 	$statement->setFetchMode(PDO::FETCH_ASSOC);
