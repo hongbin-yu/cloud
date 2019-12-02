@@ -101,7 +101,7 @@ if ($_POST) {
 	$add_device_data_email		= $_POST['add_device_form_email'];
 
 	if ( $ignore_size == false ) {
-		$add_device_data_maxusersize	= (isset($_POST["add_device_form_maxusersize"])) ? $_POST["add_device_form_maxusersize"] : '';
+		$add_device_data_maxusersize	= (isset($_POST["add_device_form_maxusersize"])) ? $_POST["add_device_form_maxusersize"] : 0;
 	}
 	else {
 		$add_device_data_maxusersize	= $add_device_data_maxusersize;
