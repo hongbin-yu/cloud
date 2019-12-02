@@ -132,7 +132,7 @@ class DeviceActions
 
 			$this->timestamp = time();
 			$this->sql_query = $this->dbh->prepare("INSERT INTO " . TABLE_DEVICES . " (device_id,password,ip,mask,supernode1,supernode2,domain,name,contact,phone,address,email,level,active,max_user_size)"
-												." VALUES (:device_id, :password,:ip,:mask,macaddress,supernode1,:supernode2,:domain, :name,:contact,:phone,:address, :email, :role, :active, :max_user_size)");
+												." VALUES (:device_id, :password,:ip,:mask,:supernode1,:supernode2,:domain, :name,:contact,:phone,:address, :email, :role, :active, :max_user_size)");
 			$this->sql_query->bindParam(':device_id', $this->device_id);
 			$this->sql_query->bindParam(':password', $this->enc_password);
 			$this->sql_query->bindParam(':ip', $this->ip);
