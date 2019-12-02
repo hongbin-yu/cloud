@@ -110,7 +110,7 @@ class DeviceActions
 		$this->password		= $arguments['password'];
 		$this->ip		= $arguments['ip'];	
 		$this->mask		= $arguments['mask'];	
-		$this->macaddress		= $arguments['macaddress'];
+		/*$this->macaddress		= $arguments['macaddress'];*/
 		$this->supernode1		= $arguments['supernode1'];		
 		$this->supernode2		= $arguments['supernode2'];
 		$this->domain		= $arguments['domain'];			
@@ -131,13 +131,13 @@ class DeviceActions
 			$this->state['hash'] = 1;
 
 			$this->timestamp = time();
-			$this->sql_query = $this->dbh->prepare("INSERT INTO " . TABLE_DEVICES . " (device_id,password,ip,mask.macaddress,supernode1,supernode2,domain,name,contact,phone,address,email,level,active,max_user_size)"
+			$this->sql_query = $this->dbh->prepare("INSERT INTO " . TABLE_DEVICES . " (device_id,password,ip,mask,supernode1,supernode2,domain,name,contact,phone,address,email,level,active,max_user_size)"
 												." VALUES (:device_id, :password,:ip,:mask,macaddress,supernode1,:supernode2,:domain, :name,:contact,:phone,:address, :email, :role, :active, :max_user_size)");
 			$this->sql_query->bindParam(':device_id', $this->device_id);
 			$this->sql_query->bindParam(':password', $this->enc_password);
 			$this->sql_query->bindParam(':ip', $this->ip);
 			$this->sql_query->bindParam(':mask', $this->mask);
-			$this->sql_query->bindParam(':macaddress', $this->macaddress);			
+			/*$this->sql_query->bindParam(':macaddress', $this->macaddress);*/			
 			$this->sql_query->bindParam(':supernode1', $this->supernode1);
 			$this->sql_query->bindParam(':supernode2', $this->supernode2);	
 			$this->sql_query->bindParam(':domain', $this->domain);			
@@ -201,7 +201,7 @@ class DeviceActions
 		$this->id				= $arguments['id'];
 		$this->ip		= $arguments['ip'];	
 		$this->mask		= $arguments['mask'];	
-		$this->macaddress	= $arguments['macaddress'];			
+		/*$this->macaddress	= $arguments['macaddress'];		*/	
 		$this->supernode1		= $arguments['supernode1'];		
 		$this->supernode2		= $arguments['supernode2'];
 		$this->domain		= $arguments['domain'];	
@@ -223,7 +223,6 @@ class DeviceActions
 			$this->edit_user_query = "UPDATE " . TABLE_USERS . " SET
 									ip = :ip,
 									mask = :mask,
-									macaddress = :macaddress,									
 									supernode1 = :supernode1
 									supernode2 = :supernode2
 									domain = :domain,
@@ -247,7 +246,7 @@ class DeviceActions
 			$this->sql_query = $this->dbh->prepare( $this->edit_user_query );
 			$this->sql_query->bindParam(':ip', $this->ip);
 			$this->sql_query->bindParam(':mask', $this->mask);
-			$this->sql_query->bindParam(':macaddress', $this->macaddress);			
+/*			$this->sql_query->bindParam(':macaddress', $this->macaddress);		*/	
 			$this->sql_query->bindParam(':supernode1', $this->supernode1);
 			$this->sql_query->bindParam(':supernode2', $this->supernode2);	
 			$this->sql_query->bindParam(':domain', $this->domain);	
