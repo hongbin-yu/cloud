@@ -100,15 +100,15 @@ include('header.php');
 						/**
 						 * A user should not be able to delete himself
 						 */
-						if ($work_device != $my_info['id']) {
+						//if ($work_device != $my_info['id']) {
 							$this_device = new DeviceActions();
 							$delete_device = $this_device->delete_device($work_device);
 							$affected_users++;
-						}
-						else {
-							$msg = __('You cannot delete your own account.','cftp_admin');
-							echo system_message('error',$msg);
-						}
+						//}
+						//else {
+						//	$msg = __('You cannot delete your own account.','cftp_admin');
+						//	echo system_message('error',$msg);
+						//}
 					}
 					
 					if ($affected_devices > 0) {
