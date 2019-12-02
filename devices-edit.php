@@ -104,7 +104,7 @@ if ($_POST) {
 		$add_device_data_maxusersize	= (isset($_POST["add_device_form_maxusersize"])) ? $_POST["add_device_form_maxusersize"] : '';
 	}
 	else {
-		$add_device_data_maxusersize	= $add_device_data_maxfilesize;
+		$add_device_data_maxusersize	= $add_device_data_maxusersize;
 	}
 
 	/**
@@ -112,6 +112,7 @@ if ($_POST) {
 	 * editing other's account (not own).
 	 */	
 	$edit_level_active = true;
+	/*
 	if (CURRENT_USER_LEVEL == 7) {
 		$edit_level_active = false;
 	}
@@ -120,6 +121,7 @@ if ($_POST) {
 			$edit_level_active = false;
 		}
 	}
+	*/
 	if ($edit_level_active === true) {
 		/** Default level to 7 just in case */
 		$add_device_data_level = (isset($_POST["add_device_form_level"])) ? $_POST['add_device_form_level'] : '7';
@@ -129,11 +131,11 @@ if ($_POST) {
 	/** Arguments used on validation and user creation. */
 	$edit_arguments = array(
 							'id'			=> $user_id,
-							'name'			=> $add_user_data_name,
-							'email'				=> $add_user_data_email,
-							'role'				=> $add_user_data_level,
-							'active'				=> $add_user_data_active,
-							'max_user_size'	=> $add_user_data_maxusersize,
+							'name'			=> $add_device_data_name,
+							'email'				=> $add_device_data_email,
+							'role'				=> $add_device_data_level,
+							'active'			=> $add_device_data_active,
+							'max_user_size'	=> $add_device_data_maxusersize,
 							'type'				=> 'edit_user'
 						);
 
@@ -145,11 +147,11 @@ if ($_POST) {
 	//$edit_arguments['password_repeat'] = (isset($_POST['add_user_form_pass2'])) ? $_POST['add_user_form_pass2'] : '';
 
 	/** Validate the information from the posted form. */
-	$edit_validate = $edit_user->validate_user($edit_arguments);
+	$edit_validate = $edit_device->validate_device($edit_arguments);
 	
 	/** Create the user if validation is correct. */
 	if ($edit_validate == 1) {
-		$edit_response = $edit_user->edit_user($edit_arguments);
+		$edit_response = $edit_device->edit_device($edit_arguments);
 	}
 
 	$location = BASE_URI . 'devices-edit.php?id=' . $device_id . '&status=' . $edit_response['query'];
@@ -158,10 +160,11 @@ if ($_POST) {
 }
 
 $page_title = __('Edit device','cftp_admin');
+/*
 if (CURRENT_USER_USERNAME == $add_device_data_user) {
 	$page_title = __('My account','cftp_admin');
 }
-
+*/
 include('header.php');
 ?>
 
