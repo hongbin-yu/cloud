@@ -206,7 +206,9 @@ class DeviceActions
 		$this->supernode2		= $arguments['supernode2'];
 		$this->domain		= $arguments['domain'];	
 		$this->name				= encode_html($arguments['name']);
-		
+		$this->contact				= encode_html($arguments['contact']);
+		$this->phone				= encode_html($arguments['phone']);
+		$this->address				= encode_html($arguments['address']);		
 		$this->email			= encode_html($arguments['email']);
 		$this->role				= $arguments['role'];
 		$this->active			= ( $arguments['active'] == '1' ) ? 1 : 0;
