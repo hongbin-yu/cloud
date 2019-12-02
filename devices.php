@@ -45,7 +45,7 @@ include('header.php');
 			$sql_device->bindParam(':devices', $devices_to_get);
 			$sql_device->execute();
 			$sql_device->setFetchMode(PDO::FETCH_ASSOC);
-			while ( $data_device = $sql_devices->fetch() ) {
+			while ( $data_device = $sql_device->fetch() ) {
 				$all_devices[$data_device['id']] = $data_device['name'];
 			}
 
