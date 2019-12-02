@@ -35,7 +35,7 @@ include('header.php');
 	if(isset($_GET['action'])) {
 		/** Continue only if 1 or more users were selected. */
 		if(!empty($_GET['batch'])) {
-			$selected_devicess = $_GET['batch'];
+			$selected_devices = $_GET['batch'];
 			$devices_to_get = implode( ',', array_map( 'intval', array_unique( $selected_devices ) ) );
 
 			/**
