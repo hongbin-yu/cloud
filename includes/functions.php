@@ -351,6 +351,25 @@ function user_exists_id($id)
 }
 
 /**
+ * Check if a device id exists on the database.
+ * Used on the Edit device edit page.
+ *
+ * @return bool
+ */
+function device_exists_id($id)
+{
+	global $dbh;
+	$statement = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE id=:id");
+	$statement->bindParam(':id', $id, PDO::PARAM_INT);
+	$statement->execute();
+	if ( $statement->rowCount() > 0 ) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+/**
  * Check if a group id exists on the database.
  * Used on the Edit group page.
  *
