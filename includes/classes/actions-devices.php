@@ -56,8 +56,8 @@ class DeviceActions
 			//$valid_me->validate('email_exists',$this->email,$add_user_mail_exists);
 			/** devie_id checks */
 			$valid_me->validate('device_exists',$this->device_id,$add_device_exists);
-			$valid_me->validate('completed',$this->devie_id,$validation_no_device);
-			$valid_me->validate('alpha_dot',$this->devie_id,$validation_alpha_device);
+			$valid_me->validate('completed',$this->device_id,$validation_no_device);
+			$valid_me->validate('alpha_dot',$this->device_id,$validation_alpha_device);
 			$valid_me->validate('length',$this->device_id,$validation_length_user,MIN_USER_CHARS,MAX_USER_CHARS);
 
 			$this->validate_password = true;
