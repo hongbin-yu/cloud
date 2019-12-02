@@ -220,11 +220,11 @@ class DeviceActions
 			$this->state['hash'] = 1;
 
 			/** SQL query */
-			$this->edit_user_query = "UPDATE " . TABLE_USERS . " SET
+			$this->edit_device_query = "UPDATE " . TABLE_DEVICES . " SET
 									ip = :ip,
 									mask = :mask,
-									supernode1 = :supernode1
-									supernode2 = :supernode2
+									supernode1 = :supernode1,
+									supernode2 = :supernode2,
 									domain = :domain,
 									name = :name,
 									contact = :contact,
@@ -238,20 +238,24 @@ class DeviceActions
 
 			/** Add the password to the query if it's not the dummy value '' */
 			if (!empty($arguments['password'])) {
-				$this->edit_user_query .= ", password = :password";
+				$this->edit_device_query .= ", password = :password";
 			}
 
-			$this->edit_user_query .= " WHERE id = :id";
+			$this->edit_device_query .= " WHERE id = :id";
 
-			$this->sql_query = $this->dbh->prepare( $this->edit_user_query );
-			$this->sql_query->bindParam(':name', $this->name);
+			$this->sql_query = $this->dbh->prepare( $this->edit_device_query );
+			$this->sql_query->bindParam(':ip', $this->ip);			
+			$this->sql_query->bindParam(':mask', $this->mask);
+			$this->sql_query->bindParam(':supernode1', $this->supernode1);			
+			$this->sql_query->bindParam(':supernode2', $this->supernode2);
+			$this->sql_query->bindParam(':domain', $this->domain);
 			$this->sql_query->bindParam(':contact', $this->conact);
 			$this->sql_query->bindParam(':phone', $this->phone);
 			$this->sql_query->bindParam(':address', $this->address);			
 			$this->sql_query->bindParam(':email', $this->email);
 			$this->sql_query->bindParam(':level', $this->role);
 			$this->sql_query->bindParam(':active', $this->active, PDO::PARAM_INT);
-			$this->sql_query->bindParam(':max_file_size', $this->max_file_size, PDO::PARAM_INT);
+			$this->sql_query->bindParam(':max_user_size', $this->max_user_size, PDO::PARAM_INT);
 			$this->sql_query->bindParam(':id', $this->id, PDO::PARAM_INT);
 			if (!empty($arguments['password'])) {
 				$this->sql_query->bindParam(':password', $this->enc_password);
