@@ -33,7 +33,7 @@ class DeviceActions
 		$this->password = $arguments['password'];
 		//$this->password_repeat = $arguments['password_repeat'];
 		$this->role = $arguments['role'];
-		$this->notify_account = $arguments['notify_account'];
+		$this->notify_account = ( !empty($arguments['notify_account']) ) ?$arguments['notify_account']:0;
 		$this->max_user_size = ( !empty( $arguments['max_user_size'] ) ) ? $arguments['max_user_size'] : 255;
 		$this->type = $arguments['type'];
 
