@@ -251,6 +251,7 @@ class DeviceActions
 			$this->sql_query->bindParam(':supernode1', $this->supernode1);			
 			$this->sql_query->bindParam(':supernode2', $this->supernode2);
 			$this->sql_query->bindParam(':domain', $this->domain);
+			$this->sql_query->bindParam(':name', $this->name);
 			$this->sql_query->bindParam(':contact', $this->conact);
 			$this->sql_query->bindParam(':phone', $this->phone);
 			$this->sql_query->bindParam(':address', $this->address);			
