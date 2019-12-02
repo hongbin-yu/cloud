@@ -291,6 +291,7 @@ msgstr "我的帐号"
 msgid "Client edited correctly."
 msgstr "客户已正确修改。"
 
+
 #: clients-edit.php:221 groups-edit.php:145 users-edit.php:200
 msgid "This page is not intended to be accessed directly."
 msgstr "该页面不可直接访问。"
@@ -302,6 +303,10 @@ msgstr "没有选择任何客户"
 #: clients-edit.php:228
 msgid "There is no client with that ID number."
 msgstr "没有匹配该ID的客户"
+
+#: devices-edit.php:227
+msgid "There is no device with that ID number."
+msgstr "没有匹配该ID的设备"
 
 #: clients-edit.php:233 users-edit.php:212
 msgid "Your account type doesn't allow you to access this feature."
@@ -3350,9 +3355,17 @@ msgstr "编辑系统用户"
 msgid "User edited correctly."
 msgstr "用户编辑正确。"
 
+#: devices-edit.php:166
+msgid "Device edited correctly."
+msgstr "设备编辑正确。"
+
 #: users-edit.php:202
 msgid "No user was selected."
 msgstr "没有选中用户。"
+
+#: devices-edit.php:222
+msgid "No device was selected."
+msgstr "没有选中设备。"
 
 #: users-edit.php:207
 msgid "There is no user with that ID number."
@@ -3449,6 +3462,15 @@ msgstr "付节点"
 #: device-form.php:65
 msgid "Add device"
 msgstr "添加设备"
+
+
+#: device-form.php:70
+msgid "Save device"
+msgstr "保存设备"
+
+#: devices-edit.php:70
+msgid "Edit device"
+msgstr "编辑设备"
 
 #: device-form.php:160
 msgid "Max. usersize"

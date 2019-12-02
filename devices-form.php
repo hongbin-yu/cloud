@@ -102,7 +102,7 @@ switch ($device_form_type) {
 		<label for="add_device_form_pass" class="col-sm-4 control-label"><?php _e('Password','cftp_admin'); ?></label>
 		<div class="col-sm-8">
 			<div class="input-group">
-				<input name="add_device_form_pass" id="add_device_form_pass" class="form-control <?php if ($require_pass) { echo 'required'; } ?> password_toggle" type="password" maxlength="<?php echo MAX_PASS_CHARS; ?>" value="<<?php echo (isset($add_device_data_password)) ? html_output(stripslashes($add_device_data_password)) : ''; ?>>"/>
+				<input name="add_device_form_pass" id="add_device_form_pass" class="form-control <?php if ($require_pass) { echo 'required'; } ?> password_toggle" type="password" maxlength="<?php echo MAX_PASS_CHARS; ?>" value="<?php echo (isset($add_device_data_password)) ? html_output(stripslashes($add_device_data_password)) : ''; ?>"/>
 				<div class="input-group-btn password_toggler">
 					<button type="button" class="btn pass_toggler_show"><i class="glyphicon glyphicon-eye-open"></i></button>
 				</div>
