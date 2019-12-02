@@ -45,6 +45,7 @@ if ($page_status === 1) {
 		$add_device_data_mask = $data['mask'];	
 		$add_device_data_supernode1 = $data['supernode1'];	
 		$add_device_data_supernode2 = $data['supernode2'];	
+		$add_device_data_domain = $data['domain'];
 		$add_device_data_contact = $data['contact'];	
 		$add_device_data_phone = $data['phone'];
 		$add_device_data_address = $data['address'];		
