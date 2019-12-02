@@ -8,7 +8,9 @@
  */
 $allowed_levels = array(9,8,7);
 require_once('sys.includes.php');
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $active_nav = 'devices';
 
 /** Create the object */
@@ -170,8 +172,9 @@ include('header.php');
 					$msg = __('User edited correctly.','cftp_admin');
 					echo system_message('ok',$msg);
 
-					$saved_user = get_user_by_id($user_id);
+					$saved_device = get_device_by_id($device_id);
 					/** Record the action log */
+					/*
 					$new_log_action = new LogActions();
 					$log_action_args = array(
 											'action' => 13,
@@ -181,6 +184,7 @@ include('header.php');
 											'get_user_real_name' => true
 										);
 					$new_record_action = $new_log_action->log_action_save($log_action_args);
+					*/
 				break;
 				case 0:
 					$msg = __('There was an error. Please try again.','cftp_admin');
@@ -220,7 +224,7 @@ include('header.php');
 					/**
 					 * Include the form.
 					 */
-					include('users-form.php');
+					include('devices-form.php');
 				}
 			?>
 
