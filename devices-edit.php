@@ -130,8 +130,15 @@ if ($_POST) {
 
 	/** Arguments used on validation and user creation. */
 	$edit_arguments = array(
-							'id'			=> $user_id,
+							'id'			=> $device_id,
+							'ip'			=> $add_device_data_ip,
+							'mask'			=> $add_device_data_mask,
+							'supernode1'			=> $add_device_data_supernode1,							
 							'name'			=> $add_device_data_name,
+							'domain'			=> $add_device_data_domain,
+							'contact'			=> $add_device_data_contact,
+							'phone'			=> $add_device_data_phone,	
+							'address'			=> $add_device_data_address,							
 							'email'				=> $add_device_data_email,
 							'role'				=> $add_device_data_level,
 							'active'			=> $add_device_data_active,
