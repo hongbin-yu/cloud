@@ -70,6 +70,7 @@ $classes_files = array(
 						'actions-members.php',
 						'actions-log.php',
 						'actions-users.php',
+						'actions-devices.php',
 						'file-upload.php',
 						'form-validation.php',
 						'send-email.php',
