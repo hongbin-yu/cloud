@@ -8,9 +8,9 @@
  */
 $allowed_levels = array(9,8,7);
 require_once('sys.includes.php');
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $active_nav = 'devices';
 
 /** Create the object */
@@ -33,7 +33,7 @@ else {
  */
 if ($page_status === 1) {
 	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id like ':id'");
-	$editing->bindParam(':id', $device_id, PDO::PARAM_INT);
+	$editing->bindParam(':id', $device_id, PDO::PARAM_STRING);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
 
