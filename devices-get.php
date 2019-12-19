@@ -33,7 +33,7 @@ else {
  */
 if ($page_status === 1) {
 	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id like ':id'");
-	$editing->bindParam(':id', $device_id, PDO::PARAM_STRING);
+	$editing->bindParam(':id', $device_id, PDO::PARAM_STR);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
 
