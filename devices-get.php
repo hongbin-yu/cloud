@@ -17,8 +17,8 @@ $active_nav = 'devices';
 $edit_device = new DeviceActions();
 
 /** Check if the id parameter is on the URI. */
-if (isset($_GET['id'])) {
-	$device_id = $_GET['id'];
+if (isset($_GET['device_id'])) {
+	$device_id = $_GET['device_id'];
 	$page_status = (device_exists_id($device_id)) ? 1 : 2;
 }
 else {
@@ -32,7 +32,7 @@ else {
  * Get the device information from the database to use on the form.
  */
 if ($page_status === 1) {
-	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE id=:id");
+	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id=:id");
 	$editing->bindParam(':id', $device_id, PDO::PARAM_INT);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@ echo '"ip": "'.$add_device_data_ip.'",';
 echo '"mask": "'.$add_device_data_mask.'",';
 echo '"supernode1": "'.$add_device_data_supernode1.'",';
 echo '"supernode2": "'.$add_device_data_supernode2.'",';
-echo '"domain": "'.$add_device_data_domain.'",';
+echo '"domain": "'.$add_device_data_domain.'"';
 echo "}";
 
 ?>
