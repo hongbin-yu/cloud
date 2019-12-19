@@ -32,7 +32,7 @@ else {
  * Get the device information from the database to use on the form.
  */
 if ($page_status === 1) {
-	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id=':id'");
+	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id like ':id'");
 	$editing->bindParam(':id', $device_id, PDO::PARAM_INT);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@ header("Content-Type: application/json");
 
 echo "{";
 echo '"name": "'.$add_device_data_name.'",';
-echo '"device_id": "'.$add_device_data_device_id.'",';
+echo '"device_id": "'.$device_id.'",';
 echo '"password": "'.$add_device_data_password.'",';
 echo '"ip": "'.$add_device_data_ip.'",';
 echo '"mask": "'.$add_device_data_mask.'",';
