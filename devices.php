@@ -412,7 +412,7 @@ include('header.php');
 													'content'		=> '<span class="label label-' . $class . '">' . $label . '</span>',
 												),
 											array(
-													'content'		=> ( $row["max_user_size"] == '0' ) ? __('Default','cftp_admin') : $row["max_user_size"] . 'mb',
+													'content'		=> ( $row["max_user_size"] == '0' ) ? __('Default','cftp_admin') : $row["max_user_size"],
 												),
 											array(
 													'content'		=> $date,
