@@ -18,7 +18,7 @@ $edit_device = new DeviceActions();
 
 /** Check if the id parameter is on the URI. */
 if (isset($_GET['device_id'])) {
-	$device_id = "$_GET['device_id']";
+	$device_id =encode_html($_GET['device_id']);
 	$page_status = 1;//(device_exists_id($device_id)) ? 1 : 2;
 }
 else {
@@ -32,7 +32,7 @@ else {
  * Get the device information from the database to use on the form.
  */
 if ($page_status === 1) {
-	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id like ':id'");
+	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id like :id");
 	$editing->bindParam(':id', $device_id, PDO::PARAM_STR);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
