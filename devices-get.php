@@ -32,7 +32,7 @@ else {
  * Get the device information from the database to use on the form.
  */
 if ($page_status === 1) {
-	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id=:id");
+	$editing = $dbh->prepare("SELECT * FROM " . TABLE_DEVICES . " WHERE device_id=':id'");
 	$editing->bindParam(':id', $device_id, PDO::PARAM_INT);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
