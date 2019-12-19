@@ -19,7 +19,7 @@ $edit_device = new DeviceActions();
 /** Check if the id parameter is on the URI. */
 if (isset($_GET['device_id'])) {
 	$device_id = $_GET['device_id'];
-	$page_status = (device_exists_id($device_id)) ? 1 : 2;
+	$page_status = 1;//(device_exists_id($device_id)) ? 1 : 2;
 }
 else {
 	/**
