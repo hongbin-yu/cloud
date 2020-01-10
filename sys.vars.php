@@ -152,12 +152,13 @@ define('TABLE_CATEGORIES_RELATIONS', TABLES_PREFIX . 'categories_relations');
 define('TABLE_LOG', TABLES_PREFIX . 'actions_log');
 define('TABLE_PASSWORD_RESET', TABLES_PREFIX . 'password_reset');
 define('TABLE_DEVICES', TABLES_PREFIX . 'devices');
+define('TABLE_DEVICES_MEMBERS', TABLES_PREFIX . 'devices_members');
 
 $original_basic_tables = array(
 								TABLE_FILES,
 								TABLE_OPTIONS,
 								TABLE_USERS,
-								TABLE_DEVICES
+								TABLE_DEVICES,
 							);
 
 $all_system_tables = array(
@@ -168,6 +169,7 @@ $all_system_tables = array(
 							'options',
 							'users',
 							'devices',
+							'devices_members',							
 							'groups',
 							'members',
 							'members_requests',
@@ -191,7 +193,7 @@ define('MAX_DEVICE_CHARS', 60);
 define('MIN_PASS_CHARS', 5);
 define('MAX_PASS_CHARS', 60);
 define('MAX_SUPERNODE_CHARS', 20);
-
+define('MAX_IP_CHARS', 20);
 
 define('MIN_GENERATE_PASS_CHARS', 10);
 define('MAX_GENERATE_PASS_CHARS', 20);

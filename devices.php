@@ -13,9 +13,9 @@ $load_scripts	= array(
 
 $allowed_levels = array(9);
 require_once('sys.includes.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 if(!check_for_admin()) {
     return;
 }
@@ -137,7 +137,7 @@ include('header.php');
 	}
 
 	$params	= array();
-
+	$no_results_error = 'filter';
 	$cq = "SELECT * FROM " . TABLE_DEVICES . " WHERE level != '0'";
 
 	/** Add the search terms */	

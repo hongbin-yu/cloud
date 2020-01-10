@@ -68,7 +68,7 @@ function get_latest_version_data()
     $versions = getJson(UPDATES_FEED_URI, '-1 days');
     $versions = json_decode($versions);
     $latest = $versions[0];
-    $online_version = substr($latest->version, 1);
+    $online_version = $latest?substr($latest->version, 1):0;
     if ($online_version > $current_version) {
         $return = [
             'local_version' => $current_version,

@@ -21,8 +21,8 @@ if (defined('TRY_INSTALL')) {
 								  `url` text NOT NULL,
 								  `original_url` text NOT NULL,
 								  `filename` text NOT NULL,
-								  'filepath'  varchar(255) NULL,
-								  'uri' varchar(255) NULL,
+								  `filepath`  varchar(255) NULL,
+								  `uri` varchar(255) NULL,
 								  `description` text NOT NULL,
 								  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 								  `uploader` varchar('.MAX_USER_CHARS.') NOT NULL,
@@ -30,6 +30,7 @@ if (defined('TRY_INSTALL')) {
 								  `expiry_date` TIMESTAMP NOT NULL DEFAULT "' . $expiry_default . '",
 								  `public_allow` INT(1) NOT NULL default \'0\',
 								  `public_token` varchar(32) NULL,
+								  `lastmodified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 								  PRIMARY KEY (`id`)
 								) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 								',
@@ -80,8 +81,8 @@ if (defined('TRY_INSTALL')) {
 								  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 								  `created_by` varchar(32) NOT NULL,
 								  `name` varchar(32) NOT NULL,
-								  'deviceid' varchar(12) NULL,
-								  'ip' varchar(15) NULL,
+								  `deviceid` varchar(12) NULL,
+								  `ip` varchar(15) NULL,
 								  `description` text NOT NULL,
 								  `public` tinyint(1) NOT NULL DEFAULT \'0\',
 								  `public_token` varchar(32) NULL,
@@ -424,6 +425,21 @@ if (defined('TRY_INSTALL')) {
 								',
 					'params' => array(),
 		),
-
+		'17' =>  array(
+					'table'	=> TABLE_DEVICES_MEMBERS,
+					'query'	=> 'CREATE TABLE IF NOT EXISTS `'.TABLE_DEVICES_MEMBERS.'` (
+								  `id` int(11) NOT NULL AUTO_INCREMENT,
+								  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+								  `added_by` varchar(32) NOT NULL,
+								  `client_id` int(11) NOT NULL,
+								  `device_id` int(11) NOT NULL,
+								  `uid` int(11) NOT NULL,
+								  PRIMARY KEY (`id`),
+								  FOREIGN KEY (`client_id`) REFERENCES '.TABLE_USERS.'(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+								  FOREIGN KEY (`device_id`) REFERENCES '.TABLE_DEVICES.'(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+								) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+								',
+					'params' => array(),
+		),
 	);
 }
