@@ -59,10 +59,10 @@ if ( defined('DB_NAME') ) {
 		$dbh->setAttribute( PDO::ATTR_EMULATE_PREPARES, false );
 	}
 	catch(PDOException $e) {
-	/*
+	
 		print "Error!: " . $e->getMessage() . "<br/>";
-		die();
-	*/
+		//die();
+	
 		return false;
 	}
 }

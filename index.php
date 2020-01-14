@@ -148,10 +148,10 @@ $login_button_text = __('Log in','cftp_admin');
 					</div>
 
 
-					<label for="login_form_remember">
+					<!--label for="login_form_remember">
 						<input type="checkbox" name="login_form_remember" id="login_form_remember" value="on" />
 						<?php _e('Remember me','cftp_admin'); ?>
-					</label>
+					</label-->
 
 					<div class="inside_form_buttons">
 						<button type="submit" id="submit" class="btn btn-wide btn-primary"><?php echo $login_button_text; ?></button>

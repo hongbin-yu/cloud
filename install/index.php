@@ -65,6 +65,8 @@ function try_query($queries)
 			}
 			$statement->execute( $params );
 		} catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+			//die();			
 			$error_str .= $e . '<br>';
 		}
 	}
