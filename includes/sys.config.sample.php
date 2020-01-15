@@ -32,22 +32,22 @@
 define('DB_DRIVER', 'mysql');
 
 /** Database name */
-define('DB_NAME', 'dajana');
+define('DB_NAME', 'database');
 
 /** Database host (in most cases it's localhost) */
-define('DB_HOST', '192.168.0.200');
+define('DB_HOST', 'localhost');
 
 /** Database username (must be assigned to the database) */
-define('DB_USER', 'yuhongyun');
+define('DB_USER', 'username');
 
 /** Database password */
-define('DB_PASSWORD', 'yuhongyun');
+define('DB_PASSWORD', 'password');
 
 /**
  * Prefix for the tables. Set to something other than tbl_ for increased
  * security onr in case you want more than 1 installations on the same database.
  */
-define('TABLES_PREFIX', 'hong_');
+define('TABLES_PREFIX', 'tbl_');
 
 /*
  * Global site language definition
@@ -70,7 +70,7 @@ define('TABLES_PREFIX', 'hong_');
  * immediately.
  *
  */
-define('SITE_LANG','zh_CN');
+define('SITE_LANG','en');
 
 /**
  * Define a maximum size (in mb.) that is allowed on each file to be uploaded.
