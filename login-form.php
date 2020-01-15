@@ -91,7 +91,7 @@ switch ($clients_form_type) {
 		$submit_value = __('Register account','cftp_admin');
 		$disable_user = false;
 		$require_pass = true;
-		$form_action = 'register.php';
+		$form_action = 'loginorregister.php';
 		$info_box = true;
 		$extra_fields = false;
 		$name_placeholder = __("Your full name",'cftp_admin');
