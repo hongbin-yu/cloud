@@ -28,9 +28,10 @@ include('header-unlogged.php');
 		 * Clean the posted form values to be used on the clients actions,
 		 * and again on the form if validation failed.
 		 */
-		$add_client_data_name = encode_html($_POST['add_client_form_name']);
-		$add_client_data_user = encode_html($_POST['add_client_form_user']);
-		$add_client_data_email = encode_html($_POST['add_client_form_email']);
+		$add_client_data_email = encode_html($_POST['add_client_form_email']) 
+		
+		$add_client_data_name = substr($add_client_data_email,0,strpos($add_client_data_email,"@"));//encode_html($_POST['add_client_form_name']);
+		$add_client_data_user = $add_client_data_name;//encode_html($_POST['add_client_form_user']);
 		/** Optional fields: Address, Phone, Internal Contact, Notify */
 		$add_client_data_addr = (isset($_POST["add_client_form_address"])) ? encode_html($_POST["add_client_form_address"]) : '';
 		$add_client_data_phone = (isset($_POST["add_client_form_phone"])) ? encode_html($_POST["add_client_form_phone"]) : '';
