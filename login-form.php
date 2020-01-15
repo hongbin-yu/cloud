@@ -14,84 +14,10 @@
  * @package		ProjectSend
  *
  */
-$allowed_levels = array(9,8,7,0);
-require_once('sys.includes.php');
-
-$page_title = __('Log in','cftp_admin');
-
-$body_class = array('login');
-
-include('header-unlogged.php');
-
-$login_button_text = __('Log in','cftp_admin');
-	
-	/**
-	 * Google Sign-in
-	 */
-/*	if ( GOOGLE_SIGNIN_ENABLED == '1' ) {
-		$googleClient = new Google_Client();
-		$googleClient->setApplicationName(THIS_INSTALL_SET_TITLE);
-		$googleClient->setClientSecret(GOOGLE_CLIENT_SECRET);
-		$googleClient->setClientId(GOOGLE_CLIENT_ID);
-		$googleClient->setAccessType('online');
-		$googleClient->setApprovalPrompt('auto');
-		$googleClient->setRedirectUri(BASE_URI . 'sociallogin/google/callback.php');
-		$googleClient->setScopes(array('profile','email'));
-		$auth_url = $googleClient->createAuthUrl();
-	}
-*/
-	if ( isset($_SESSION['errorstate'] ) ) {
-		$errorstate = $_SESSION['errorstate'];
-		unset($_SESSION['errorstate']);
-	}
 ?>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$("#login_form").submit(function(e) {
-						e.preventDefault();
-						e.stopImmediatePropagation();
-						$('.ajax_response').html();
-						clean_form(this);
+ 
 		
-						is_complete(this.username, "<?php _e('Username was not completed','cftp_admin'); ?>");
-						is_complete(this.password, "<?php _e('Password was not completed','cftp_admin'); ?>");
-		
-						// show the errors or continue if everything is ok
-						if (show_form_errors() == false) {
-							return false;
-						}
-						else {
-							var url = $(this).attr('action');
-							$('.ajax_response').html('').removeClass('alert-danger alert-success').slideUp();
-							$('#submit').html('<i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only"></span> <?php _e('Logging in','cftp_admin'); ?>...');
-							$.ajax({
-									cache: false,
-									type: "post",
-									url: url,
-									data: $(this).serialize(), // serializes the form's elements.
-									success: function(response)
-									{
-										var json = jQuery.parseJSON(response);
-										if ( json.status == 'success' ) {
-											// $('.ajax_response').html(json.message);
-                                            // $('.ajax_response').addClass('alert-success');
-											$('#submit').html('<i class="fa fa-check"></i><span class="sr-only"></span> <?php _e('Redirecting','cftp_admin'); ?>...');
-											$('#submit').removeClass('btn-primary').addClass('btn-success');
-											setTimeout('window.location.href = "'+json.location+'"', 1000);
-										}
-										else {
-                                            $('.ajax_response').addClass('alert-danger').slideDown().html(json.message);
-											$('#submit').html('<?php echo $login_button_text; ?>');
-										}
-									}
-							});
-							return false;
-						}
-					});
-				});
-			</script>
-		
-            <form action="process.php?do=login" name="login_admin" role="form" id="login_form">
+            <form action="loginorregister.php" name="login_admin" role="form" id="login_form">
 				<input type="hidden" name="do" value="login">
 				<fieldset>
 					<div class="form-group">
@@ -159,9 +85,5 @@ $login_button_text = __('Log in','cftp_admin');
 					}
 				?>
 			</div>
-
-		</div>
-	</div>
-</div>
 
 
