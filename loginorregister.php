@@ -202,7 +202,7 @@ include('header-unlogged.php');
 						 * Include the form.
 						 */
 						$clients_form_type = 'new_client_self';
-						include('index.php');
+						include('login.php');
 					}
 				}
 			?>
