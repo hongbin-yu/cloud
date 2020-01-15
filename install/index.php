@@ -6,6 +6,7 @@
  * @subpackage	Install
  */
 define( 'IS_INSTALL', true );
+define( 'IS_MAKE_CONFIG', true );
 
 define( 'ABS_PARENT', dirname( dirname(__FILE__) ) );
 require_once( ABS_PARENT . '/sys.includes.php' );

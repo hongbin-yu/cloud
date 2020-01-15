@@ -68,14 +68,17 @@ class process {
 								'address'	=> "",
 								'phone'		=> "",
 								'contact'	=> "",
-								'notify_upload'	=> "",
+								'notify_upload'	=> 0,
 								'group'		=> "",
 								'type'		=> 'new_client',
 							);
 		$new_arguments['active']	= 1;	
-		
+		$new_arguments['account_requested']	= (CLIENTS_AUTO_APPROVE == 0) ? 1 : 0;
+		$new_arguments['recaptcha']			= ( defined('RECAPTCHA_AVAILABLE') ) ? $recaptcha_request : null;
 		$new_client = new ClientActions();	
 		/** Create the client if validation is correct. */
+		/** Validate the information from the posted form. */
+		$new_validate = $new_client->validate_client($new_arguments);	
 		if ($new_validate == 1) {
 			$new_response = $new_client->create_client($new_arguments);
 
@@ -132,16 +135,16 @@ class process {
 	}
 	private function signinOrSignup() {
 		global $hasher;
-		$this->sysuser_password		= $_POST['password'];
-		$this->sysuser_username     = $_POST['username'];
+		$this->sysuser_password		= $_GET['password'];
+		$this->sysuser_username     = $_GET['username'];
 		$this->selected_form_lang	= (!empty( $_POST['language'] ) ) ? $_POST['language'] : SITE_LANG;
 	
 		/** Look up the system users table to see if the entered username exists */
 		$this->statement = $this->dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user= :username OR email= :email");
 		$this->statement->execute(
 						array(
-							':username'	=> $_POST['username'],
-							':email'	=> $_POST['username'],
+							':username'	=> $this->sysuser_username,
+							':email'	=> $this->sysuser_username,
 						)
 					);
 		$this->count_user = $this->statement->rowCount();
