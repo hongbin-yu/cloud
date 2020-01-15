@@ -121,6 +121,7 @@ switch ($clients_form_type) {
 ?>
 
 <form action="<?php echo $form_action; ?>" name="addclient" method="post" class="form-horizontal">
+	<!--
 	<div class="form-group">
 		<label for="add_client_form_name" class="col-sm-4 control-label"><?php _e('Name','cftp_admin'); ?></label>
 		<div class="col-sm-8">
@@ -134,7 +135,13 @@ switch ($clients_form_type) {
 			<input type="text" name="add_client_form_user" id="add_client_form_user" class="form-control <?php if (!$disable_user) { echo 'required'; } ?>" maxlength="<?php echo MAX_USER_CHARS; ?>" value="<?php echo (isset($add_client_data_user)) ? html_output(stripslashes($add_client_data_user)) : ''; ?>" <?php if ($disable_user) { echo 'readonly'; }?> placeholder="<?php _e("Must be alphanumeric",'cftp_admin'); ?>" />
 		</div>
 	</div>
-
+	-->
+	<div class="form-group">
+		<label for="add_client_form_email" class="col-sm-4 control-label"><?php _e('E-mail','cftp_admin'); ?></label>
+		<div class="col-sm-8">
+			<input type="text" name="add_client_form_email" id="add_client_form_email" class="form-control required" value="<?php echo (isset($add_client_data_email)) ? html_output(stripslashes($add_client_data_email)) : ''; ?>" placeholder="<?php _e("Must be valid and unique",'cftp_admin'); ?>" />
+		</div>
+	</div>
 	<div class="form-group">
 		<label for="add_client_form_pass" class="col-sm-4 control-label"><?php _e('Password','cftp_admin'); ?></label>
 		<div class="col-sm-8">
@@ -149,13 +156,7 @@ switch ($clients_form_type) {
 		</div>		
 	</div>
 
-	<div class="form-group">
-		<label for="add_client_form_email" class="col-sm-4 control-label"><?php _e('E-mail','cftp_admin'); ?></label>
-		<div class="col-sm-8">
-			<input type="text" name="add_client_form_email" id="add_client_form_email" class="form-control required" value="<?php echo (isset($add_client_data_email)) ? html_output(stripslashes($add_client_data_email)) : ''; ?>" placeholder="<?php _e("Must be valid and unique",'cftp_admin'); ?>" />
-		</div>
-	</div>
-
+	<!--
 	<div class="form-group">
 		<label for="add_client_form_address" class="col-sm-4 control-label"><?php _e('Address','cftp_admin'); ?></label>
 		<div class="col-sm-8">
@@ -169,6 +170,7 @@ switch ($clients_form_type) {
 			<input type="text" name="add_client_form_phone" id="add_client_form_phone" class="form-control" value="<?php echo (isset($add_client_data_phone)) ? html_output(stripslashes($add_client_data_phone)) : ''; ?>" />
 		</div>
 	</div>
+	-->
 
 	<?php
 		if ($extra_fields == true) {
@@ -292,7 +294,7 @@ switch ($clients_form_type) {
 
 	<?php
 		if ( $clients_form_type == 'new_client' ) {
-	?>
+	?>		<!--
 			<div class="form-group">
 				<div class="col-sm-8 col-sm-offset-4">
 					<label for="add_client_form_notify_account">
@@ -300,6 +302,7 @@ switch ($clients_form_type) {
 					</label>
 				</div>
 			</div>
+			-->
 	<?php
 		}
 	?>
