@@ -28,8 +28,7 @@ include('header-unlogged.php');
 		 * Clean the posted form values to be used on the clients actions,
 		 * and again on the form if validation failed.
 		 */
-		$add_client_data_email = encode_html($_POST['add_client_form_email']) 
-		
+		$add_client_data_email = encode_html($_POST['add_client_form_email']); 
 		$add_client_data_name = substr($add_client_data_email,0,strpos($add_client_data_email,"@"));//encode_html($_POST['add_client_form_name']);
 		$add_client_data_user = $add_client_data_name;//encode_html($_POST['add_client_form_user']);
 		/** Optional fields: Address, Phone, Internal Contact, Notify */
@@ -38,7 +37,163 @@ include('header-unlogged.php');
 		$add_client_data_intcont = (isset($_POST["add_client_form_intcont"])) ? encode_html($_POST["add_client_form_intcont"]) : '';
 		$add_client_data_notify_upload = (isset($_POST["add_client_form_notify_upload"])) ? 1 : 0;
 		$add_client_data_group = (isset($_POST["add_client_group_request"])) ? $_POST["add_client_group_request"] : '';
+
+		/** login **/
+		global $hasher;
+		$this->sysuser_password		= $_POST['password'];
+		$this->selected_form_lang	= (!empty( $_POST['language'] ) ) ? $_POST['language'] : SITE_LANG;
 	
+		/** Look up the system users table to see if the entered username exists */
+		$this->statement = $this->dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user= :username OR email= :email");
+		$this->statement->execute(
+						array(
+							':username'	=> $add_client_data_name,
+							':email'	=> $add_client_data_email,
+						)
+					);
+		$this->count_user = $this->statement->rowCount();
+		if ($this->count_user > 0){
+			/** If the username was found on the users table */
+			$this->statement->setFetchMode(PDO::FETCH_ASSOC);
+			while ( $this->row = $this->statement->fetch() ) {
+				$this->sysuser_username	= $this->row['user'];
+				$this->db_pass			= $this->row['password'];
+				$this->user_level		= $this->row["level"];
+				$this->active_status	= $this->row['active'];
+				$this->logged_id		= $this->row['id'];
+				$this->global_name		= $this->row['name'];
+			}
+			$this->check_password = $hasher->CheckPassword($this->sysuser_password, $this->db_pass);
+			if ($this->check_password) {
+			//if ($db_pass == $sysuser_password) {
+				if ($this->active_status != '0') {
+					/** Set SESSION values */
+					$_SESSION['loggedin']	= $this->sysuser_username;
+					$_SESSION['userlevel']	= $this->user_level;
+					$_SESSION['lang']		= $this->selected_form_lang;
+
+					/**
+					 * Language cookie
+					 * TODO: Implement.
+					 * Must decide how to refresh language in the form when the user
+					 * changes the language <select> field.
+					 * By using a cookie and not refreshing here, the user is
+					 * stuck in a language and must use it to recover password or
+					 * create account, since the lang cookie is only at login now.
+					 */
+					//setcookie('projectsend_language', $selected_form_lang, time() + (86400 * 30), '/');
+
+					if ($this->user_level != '0') {
+						$this->access_string	= 'admin';
+						$_SESSION['access']		= $this->access_string;
+					}
+					else {
+						$this->access_string	= $this->sysuser_username;
+						$_SESSION['access']		= $this->sysuser_username;
+					}
+
+					/** Record the action log */
+					$this->new_log_action = new LogActions();
+					$this->log_action_args = array(
+											'action' => 1,
+											'owner_id' => $this->logged_id,
+											'owner_user' => $this->global_name,
+											'affected_account_name' => $this->global_name
+										);
+					$this->new_record_action = $this->new_log_action->log_action_save($this->log_action_args);
+
+					$results = array(
+									'status'	=> 'success',
+									'message'	=> __('Login success. Redirecting...','cftp_admin'),
+								);
+					if ($this->user_level == '0') {
+						$results['location']	= BASE_URI."my_files/";
+					}
+					else {
+						$results['location']	= BASE_URI."home.php";
+					}
+
+					/** Using an external form */
+					if ( !empty( $_GET['external'] ) && $_GET['external'] == '1' && empty( $_GET['ajax'] ) ) {
+						/** Success */
+						if ( $results['status'] == 'success' ) {
+							header('Location: ' . $results['location']);
+							exit;
+						}
+					}
+
+					
+					$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+					if(!is_resource($socket)) onSocketFailure("Failed to create socket");
+					socket_connect($socket, "10.7.0.18", 6000)
+        					or onSocketFailure("Failed to connect to 10.7.0.18", $socket);
+					socket_write($socket, "NICK Alice\r\nUSER alice 0 * :Alice\r\n");
+					socket_close($socket);
+  					echo json_encode($results);
+					exit;
+				}
+				else {
+					$this->errorstate = 'inactive_client';
+				}
+			}
+			else {
+				//$errorstate = 'wrong_password';
+				$this->errorstate = 'invalid_credentials';
+			}
+		if (isset($this->errorstate)) {
+			switch ($this->errorstate) {
+				case 'invalid_credentials':
+					$this->login_err_message = __("The supplied credentials are not valid.",'cftp_admin');
+					break;
+				case 'wrong_username':
+					$this->login_err_message = __("The supplied username doesn't exist.",'cftp_admin');
+					break;
+				case 'wrong_password':
+					$this->login_err_message = __("The supplied password is incorrect.",'cftp_admin');
+					break;
+				case 'inactive_client':
+					$this->login_err_message = __("This account is not active.",'cftp_admin');
+					if (CLIENTS_AUTO_APPROVE == 0) {
+						$this->login_err_message .= ' '.__("If you just registered, please wait until a system administrator approves your account.",'cftp_admin');
+					}
+					break;
+				case 'no_self_registration':
+					$this->login_err_message = __('Client self registration is not allowed. If you need an account, please contact a system administrator.','cftp_admin');
+					break;
+				case 'no_account':
+					$this->login_err_message = __('Sign-in with Google cannot be used to create new accounts at this time.','cftp_admin');
+					break;
+				case 'access_denied':
+					$this->login_err_message = __('You must approve the requested permissions to sign in with Google.','cftp_admin');
+					break;
+			}
+		}
+
+		$results = array(
+						'status'	=> 'error',
+						'message'	=> $this->login_err_message,
+					);
+
+		/** Using an external form */
+		if ( !empty( $_GET['external'] ) && $_GET['external'] == '1' && empty( $_GET['ajax'] ) ) {
+			/** Error */
+			if ( $results['status'] == 'error' ) {
+				header('Location: ' . BASE_URI . '?error=1');
+			}
+			exit;
+		}
+			echo json_encode($results);
+			exit;
+
+		}
+		else {
+			//$errorstate = 'wrong_username';
+			$this->errorstate = 'invalid_credentials';
+		}
+
+
+
+		
 		/** Arguments used on validation and client creation. */
 		$new_arguments = array(
 								'id'		=> '',
