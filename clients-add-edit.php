@@ -34,7 +34,7 @@ if($username == '') {
     die('{"error":"username must not empty"}');
 }
 if ($_GET) {
-	$editing = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user=:username");
+	$editing = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user=':username'");
 	$editing->bindParam(':username', $username, PDO::PARAM_STR);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
@@ -118,12 +118,16 @@ if ($_GET) {
 								);
 
 			$memberships->update_membership_requests($arguments);
+			header("Content-Type: application/json");
+			die('{"ok":"user updated :'.$username.'"}');	
+		}else {
+			header("HTTP/1.0 401 validate fail: ".$add_client_data_email);
+			die('{"error":"user validate fail :'.$username.'"}')			
 		}
 
 		//$location = BASE_URI . 'clients-edit.php?id=' . $client_id . '&status=' . $edit_response['query'];
 		//header("Location: $location");
-		header("Content-Type: application/json");
-		die('{"ok":"user updated :'.$username.'"}');	
+
 	}else {
 		$new_client = new ClientActions();
 
