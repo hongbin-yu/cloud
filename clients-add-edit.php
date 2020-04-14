@@ -17,7 +17,7 @@ $active_nav = 'clients';
 
 $page_title = __('Add client','cftp_admin');
 
-include('header.php');
+//include('header.php');
 
 /**
  * Set checkboxes as 1 to default them to checked when first entering
