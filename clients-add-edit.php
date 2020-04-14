@@ -122,7 +122,7 @@ if ($_GET) {
 			die('{"ok":"user updated :'.$username.'"}');	
 		}else {
 			header("HTTP/1.0 401 validate fail: ".$add_client_data_email);
-			die('{"error":"user validate fail :'.$username.'"}')			
+			die('{"error":"user validate fail :'.$username.'"}');			
 		}
 
 		//$location = BASE_URI . 'clients-edit.php?id=' . $client_id . '&status=' . $edit_response['query'];
