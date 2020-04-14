@@ -190,5 +190,8 @@ if ($_POST) {
 	}
 
 	
+} else {
+	header("HTTP/1.0 404");
+	die("POST Only");
 }
 ?>
