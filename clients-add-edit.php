@@ -77,7 +77,7 @@ if ($_GET) {
 		}
 
 		if ($global_level != 0) {
-			$add_client_data_active	= (isset($_GET["active"])) ? 1 : 0;
+			$add_client_data_active	= (isset($_GET["active"])) ? 1 : 1;
 		}
 
 		/** Arguments used on validation and client creation. */
@@ -141,7 +141,7 @@ if ($_GET) {
 		$add_client_data_maxfilesize = (isset($_GET["maxfilesize"])) ? encode_html($_GET["maxfilesize"]) : '255';
 		$add_client_data_notify_upload = (isset($_GET["notify_upload"])) ? 1 : 0;
 		$add_client_data_notify_account = (isset($_GET["notify_account"])) ? 1 : 0;
-		$add_client_data_active = (isset($_GET["active"])) ? 1 : 0;
+		$add_client_data_active = (isset($_GET["active"])) ? 1 : 1;
 
 		/** Arguments used on validation and client creation. */
 		$new_arguments = array(
