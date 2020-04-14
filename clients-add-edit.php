@@ -52,7 +52,7 @@ if ($_GET) {
 		if ($data['active'] == 1) { $add_client_data_active = 1; } else { $add_client_data_active = 0; }
 	}
 
-	if(!empty($data)) {
+	if(!empty($add_client_data_user)) {
 		/**
 		 * Clean the posted form values to be used on the user actions,
 		 * and again on the form if validation failed.
@@ -121,7 +121,7 @@ if ($_GET) {
 			header("Content-Type: application/json");
 			die('{"ok":"user updated :'.$username.'"}');	
 		}else {
-			header("HTTP/1.0 401 validate fail: ".$add_client_data_email);
+			header("HTTP/1.0 401 validate fail: ".$username);
 			die('{"error":"user validate fail :'.$username.'"}');			
 		}
 
