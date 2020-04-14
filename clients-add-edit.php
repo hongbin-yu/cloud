@@ -180,9 +180,13 @@ if ($_POST) {
 		
 				$memberships->client_add_to_groups($arguments);
 			}
+			header("Content-Type: application/json");
+			die('{"ok":"user added :'.$username.'"}');	
+		}else {
+			header("HTTP/1.0 401 validate fail; Content-Type: application/json");
+			die('{"error":"user validate fail :'.$username.'"}');	
+
 		}
-		header("Content-Type: application/json");
-		die('{"ok":"user added :'.$username.'"}');	
 	}
 
 	
