@@ -33,7 +33,7 @@ if($username == '') {
 	
     die('{"error":"username must not empty"}');
 }
-if ($_POST) {
+if ($_GET) {
 	$editing = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user=:username");
 	$editing->bindParam(':username', $username, PDO::PARAM_STR);
 	$editing->execute();
@@ -60,24 +60,24 @@ if ($_POST) {
 		 * validation failed, the new unsaved values are shown to avoid
 		 * having to type them again.
 		 */
-		$add_client_data_name			= $_POST['name'];
+		$add_client_data_name			= $_GET['name'];
 		$add_client_data_user			= $username;
-		$add_client_data_email			= $_POST['email'];
+		$add_client_data_email			= $_GET['email'];
 		/** Optional fields: Address, Phone, Internal Contact, Notify */
-		$add_client_data_addr			= (isset($_POST["address"])) ? $_POST["address"] : '';
-		$add_client_data_phone			= (isset($_POST["phone"])) ? $_POST["phone"] : '';
-		$add_client_data_intcont		= (isset($_POST["intcont"])) ? $_POST["intcont"] : '';
-		$add_client_data_notify_upload  	= (isset($_POST["notify_upload"])) ? 1 : 0;
+		$add_client_data_addr			= (isset($_GET["address"])) ? $_GET["address"] : '';
+		$add_client_data_phone			= (isset($_GET["phone"])) ? $_GET["phone"] : '';
+		$add_client_data_intcont		= (isset($_GET["intcont"])) ? $_GET["intcont"] : '';
+		$add_client_data_notify_upload  	= (isset($_GET["notify_upload"])) ? 1 : 0;
 
 		if ( $ignore_size == false ) {
-			$add_client_data_maxfilesize	= (isset($_POST["maxfilesize"])) ? $_POST["maxfilesize"] : '255';
+			$add_client_data_maxfilesize	= (isset($_GET["maxfilesize"])) ? $_GET["maxfilesize"] : '255';
 		}
 		else {
 			$add_client_data_maxfilesize	= $add_client_data_maxfilesize;
 		}
 
 		if ($global_level != 0) {
-			$add_client_data_active	= (isset($_POST["active"])) ? 1 : 0;
+			$add_client_data_active	= (isset($_GET["active"])) ? 1 : 0;
 		}
 
 		/** Arguments used on validation and client creation. */
@@ -99,8 +99,8 @@ if ($_POST) {
 		 * If the password field, or the verification are not completed,
 		 * send an empty value to prevent notices.
 		 */
-		$edit_arguments['password'] = (isset($_POST['add_client_form_pass'])) ? $_POST['add_client_form_pass'] : '';
-		//$edit_arguments['password_repeat'] = (isset($_POST['add_client_form_pass2'])) ? $_POST['add_client_form_pass2'] : '';
+		$edit_arguments['password'] = (isset($_GET['password'])) ? $_GET['password'] : '';
+		//$edit_arguments['password_repeat'] = (isset($_GET['add_client_form_pass2'])) ? $_GET['add_client_form_pass2'] : '';
 
 		/** Validate the information from the posted form. */
 		$edit_validate = $edit_client->validate_client($edit_arguments);
@@ -109,7 +109,7 @@ if ($_POST) {
 		if ($edit_validate == 1) {
 			$edit_response = $edit_client->edit_client($edit_arguments);
 
-			$edit_groups = (!empty( $_POST['add_client_group_request'] ) ) ? $_POST['add_client_group_request'] : array();
+			$edit_groups = (!empty( $_GET['add_client_group_request'] ) ) ? $_GET['add_client_group_request'] : array();
 			$memberships	= new MembersActions;
 			$arguments		= array(
 									'client_id'		=> $add_client_data_id,
@@ -131,24 +131,24 @@ if ($_POST) {
 		 * Clean the posted form values to be used on the clients actions,
 		 * and again on the form if validation failed.
 		 */
-		$add_client_data_name = encode_html($_POST['name']);
+		$add_client_data_name = encode_html($_GET['name']);
 		$add_client_data_user = encode_html($username);
-		$add_client_data_email = encode_html($_POST['email']);
+		$add_client_data_email = encode_html($_GET['email']);
 		/** Optional fields: Address, Phone, Internal Contact, Notify */
-		$add_client_data_addr = (isset($_POST["address"])) ? encode_html($_POST["add_client_form_address"]) : '';
-		$add_client_data_phone = (isset($_POST["phone"])) ? encode_html($_POST["add_client_form_phone"]) : '';
-		$add_client_data_intcont = (isset($_POST["intcont"])) ? encode_html($_POST["add_client_form_intcont"]) : '';
-		$add_client_data_maxfilesize = (isset($_POST["maxfilesize"])) ? encode_html($_POST["maxfilesize"]) : '255';
-		$add_client_data_notify_upload = (isset($_POST["notify_upload"])) ? 1 : 0;
-		$add_client_data_notify_account = (isset($_POST["notify_account"])) ? 1 : 0;
-		$add_client_data_active = (isset($_POST["active"])) ? 1 : 0;
+		$add_client_data_addr = (isset($_GET["address"])) ? encode_html($_GET["add_client_form_address"]) : '';
+		$add_client_data_phone = (isset($_GET["phone"])) ? encode_html($_GET["add_client_form_phone"]) : '';
+		$add_client_data_intcont = (isset($_GET["intcont"])) ? encode_html($_GET["add_client_form_intcont"]) : '';
+		$add_client_data_maxfilesize = (isset($_GET["maxfilesize"])) ? encode_html($_GET["maxfilesize"]) : '255';
+		$add_client_data_notify_upload = (isset($_GET["notify_upload"])) ? 1 : 0;
+		$add_client_data_notify_account = (isset($_GET["notify_account"])) ? 1 : 0;
+		$add_client_data_active = (isset($_GET["active"])) ? 1 : 0;
 
 		/** Arguments used on validation and client creation. */
 		$new_arguments = array(
 								'id'			=> '',
 								'username'		=> $add_client_data_user,
-								'password'		=> $_POST['add_client_form_pass'],
-								//'password_repeat' => $_POST['add_client_form_pass2'],
+								'password'		=> $_GET['add_client_form_pass'],
+								//'password_repeat' => $_GET['add_client_form_pass2'],
 								'name'			=> $add_client_data_name,
 								'email'			=> $add_client_data_email,
 								'address'		=> $add_client_data_addr,
@@ -168,7 +168,7 @@ if ($_POST) {
 		if ($new_validate == 1) {
 			$new_response = $new_client->create_client($new_arguments);
 			
-			$add_to_groups = (!empty( $_POST['add_client_group_request'] ) ) ? $_POST['add_client_group_request'] : '';
+			$add_to_groups = (!empty( $_GET['add_client_group_request'] ) ) ? $_GET['add_client_group_request'] : '';
 			if ( !empty( $add_to_groups ) ) {
 				array_map('encode_html', $add_to_groups);
 				$memberships	= new MembersActions;
@@ -192,6 +192,6 @@ if ($_POST) {
 	
 } else {
 	header("HTTP/1.0 404");
-	die("POST Only");
+	die("GET Only");
 }
 ?>
