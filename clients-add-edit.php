@@ -123,7 +123,7 @@ if ($_POST) {
 		//$location = BASE_URI . 'clients-edit.php?id=' . $client_id . '&status=' . $edit_response['query'];
 		//header("Location: $location");
 		header("Content-Type: application/json");
-		die('{"ok":"user updated :"'.$username.'"}');	
+		die('{"ok":"user updated :'.$username.'"}');	
 	}else {
 		$new_client = new ClientActions();
 
@@ -182,7 +182,7 @@ if ($_POST) {
 			}
 		}
 		header("Content-Type: application/json");
-		die('{"ok":"user added :"'.$username.'"}');	
+		die('{"ok":"user added :'.$username.'"}');	
 	}
 
 	
