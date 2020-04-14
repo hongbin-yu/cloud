@@ -135,9 +135,9 @@ if ($_GET) {
 		$add_client_data_user = encode_html($username);
 		$add_client_data_email = encode_html($_GET['email']);
 		/** Optional fields: Address, Phone, Internal Contact, Notify */
-		$add_client_data_addr = (isset($_GET["address"])) ? encode_html($_GET["add_client_form_address"]) : '';
-		$add_client_data_phone = (isset($_GET["phone"])) ? encode_html($_GET["add_client_form_phone"]) : '';
-		$add_client_data_intcont = (isset($_GET["intcont"])) ? encode_html($_GET["add_client_form_intcont"]) : '';
+		$add_client_data_addr = (isset($_GET["address"])) ? encode_html($_GET["address"]) : '';
+		$add_client_data_phone = (isset($_GET["phone"])) ? encode_html($_GET["phone"]) : '';
+		$add_client_data_intcont = (isset($_GET["intcont"])) ? encode_html($_GET["intcont"]) : '';
 		$add_client_data_maxfilesize = (isset($_GET["maxfilesize"])) ? encode_html($_GET["maxfilesize"]) : '255';
 		$add_client_data_notify_upload = (isset($_GET["notify_upload"])) ? 1 : 0;
 		$add_client_data_notify_account = (isset($_GET["notify_account"])) ? 1 : 0;
@@ -147,7 +147,7 @@ if ($_GET) {
 		$new_arguments = array(
 								'id'			=> '',
 								'username'		=> $add_client_data_user,
-								'password'		=> $_GET['add_client_form_pass'],
+								'password'		=> $_GET['password'],
 								//'password_repeat' => $_GET['add_client_form_pass2'],
 								'name'			=> $add_client_data_name,
 								'email'			=> $add_client_data_email,
@@ -183,7 +183,7 @@ if ($_GET) {
 			header("Content-Type: application/json");
 			die('{"ok":"user added :'.$username.'"}');	
 		}else {
-			header("HTTP/1.0 401 validate fail; Content-Type: application/json");
+			header("HTTP/1.0 401 validate fail: ".$add_client_data_email);
 			die('{"error":"user validate fail :'.$username.'"}');	
 
 		}
