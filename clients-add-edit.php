@@ -34,8 +34,8 @@ if($username == '') {
     die('{"error":"username must not empty"}');
 }
 if ($_GET) {
-	$editing = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user=':username'");
-	$editing->bindParam(':username', $username, PDO::PARAM_STR);
+	$editing = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user='".$username."'");
+	//$editing->bindParam(':username', $username, PDO::PARAM_STR);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -49,7 +49,7 @@ if ($_GET) {
 		$add_client_data_intcont		= $data['contact'];
 		$add_client_data_maxfilesize	= $data['max_file_size'];
 		if ($data['notify'] == 1) { $add_client_data_notify_upload = 1; } else { $add_client_data_notify_upload = 0; }
-		if ($data['active'] == 1) { $add_client_data_active = 1; } else { $add_client_data_active = 0; }
+		if ($data['active'] == 1) { $add_client_data_active = 1; } else { $add_client_data_active = 1; }
 	}
 
 	if(!empty($add_client_data_user)) {
