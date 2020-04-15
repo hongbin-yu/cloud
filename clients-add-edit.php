@@ -35,6 +35,19 @@ if($username == '') {
 	
     die('{"error":"username must not empty"}');
 }
+/**
+ * Form type
+ */
+if ($global_level != 0) {
+	$clients_form_type = 'edit_client';
+	$ignore_size = false;
+}
+else {
+	$clients_form_type = 'edit_client_self';
+	define('EDITING_SELF_ACCOUNT', true);
+	$ignore_size = true;
+}
+
 if ($_GET) {
 	$editing = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user='".$username."'");
 	//$editing->bindParam(':username', $username, PDO::PARAM_STR);
