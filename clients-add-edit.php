@@ -16,7 +16,9 @@ require_once('sys.includes.php');
 $active_nav = 'clients';
 
 $page_title = __('Add client','cftp_admin');
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //include('header.php');
 
 /**
@@ -107,7 +109,7 @@ if ($_GET) {
 		
 		/** Edit the account if validation is correct. */
 		if ($edit_validate == 1) {
-			die($username.' before edit');
+
 			$edit_response = $edit_client->edit_client($edit_arguments);
 			die($username.' updated'.$edit_response);	
 			$edit_groups = (!empty( $_GET['add_client_group_request'] ) ) ? $_GET['add_client_group_request'] : array();
