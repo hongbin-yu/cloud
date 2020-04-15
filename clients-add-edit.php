@@ -16,9 +16,9 @@ require_once('sys.includes.php');
 $active_nav = 'clients';
 
 $page_title = __('Add client','cftp_admin');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 //include('header.php');
 
 /**
