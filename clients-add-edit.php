@@ -51,7 +51,7 @@ if ($_GET) {
 		if ($data['notify'] == 1) { $add_client_data_notify_upload = 1; } else { $add_client_data_notify_upload = 0; }
 		if ($data['active'] == 1) { $add_client_data_active = 1; } else { $add_client_data_active = 1; }
 	}
-	die("username:".$add_client_data_name);	
+	
 	if(!empty($add_client_data_user)) {
 		/**
 		 * Clean the posted form values to be used on the user actions,
@@ -118,8 +118,8 @@ if ($_GET) {
 								);
 
 			$memberships->update_membership_requests($arguments);
-			header("Content-Type: application/json");
-			die('{"ok":"user updated :'.$username.'"}');	
+			//header("Content-Type: application/json");
+			die($username.' updated');	
 		}else {
 			header("HTTP/1.0 401 validate fail: ".$username);
 			die('{"error":"user validate fail :'.$username.'"}');			
