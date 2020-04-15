@@ -68,6 +68,8 @@ if ($_GET) {
 	}
 	
 	if(!empty($add_client_data_user)) {
+		/** Create the object */
+		$edit_client = new ClientActions();
 		/**
 		 * Clean the posted form values to be used on the user actions,
 		 * and again on the form if validation failed.
@@ -124,7 +126,7 @@ if ($_GET) {
 		if ($edit_validate == 1) {
 
 			$edit_response = $edit_client->edit_client($edit_arguments);
-			die($username.' updated'.$edit_response);	
+
 			$edit_groups = (!empty( $_GET['add_client_group_request'] ) ) ? $_GET['add_client_group_request'] : array();
 			$memberships	= new MembersActions;
 			$arguments		= array(
