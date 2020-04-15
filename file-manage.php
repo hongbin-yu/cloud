@@ -22,18 +22,38 @@ if (isset($headers['Authorization'])) {
 	$username = $headers['Authorization'];
 	$file_id = $_GET['batch'];
 	$file_name = isset($_GET["file_name"])?$_GET["file_name"]:$POST['file_name'];
+	$file_original = isset($_GET["file_original"])?$_GET["file_original"]:$POST['file_original'];
 	$client_id = $_GET['modify_id'];
 	$name = $_GET['name'];
 	$description = $_GET['description'];
 	$action = isset($_GET['action'])?$_GET['action']:$_POST['action'];
-        $global_user = $username;
-        $global_account = get_user_by_username($global_user);
+    $global_user = $username;
+    $global_account = get_user_by_username($global_user);
+	$client_my_info = get_client_by_username($global_user);
+	$client_my_id = $client_my_info["id"];
 	if(isset($_GET['file_id']))
 		$file_id = $_GET['file_id'];
 	$file = get_file_by_id($file_id);
 	$location = UPLOADED_FILES_FOLDER . $file_name;
-	if(empty($file) || !file_exists($location)) {
-		die('{"error":"File does not exists!"}');
+	if(empty($file)) {
+		if(!file_exists($location)) {
+			die('{"error":"File does not exists!"}');
+		}else {
+			/** Add to the database for each client / group selected */
+			$this_upload = new PSend_Upload_File();
+			$add_arguments = array(
+						'file_disk'		=> $file_name,
+						'file_original'	=> $file_original,
+						'name'	=> $name,
+						'filepath' => $filePath,
+						'lastmodified' => $lastModified,
+						'description'	=> $description,
+						'uploader'		=> $global_user,
+						'uploader_id'	=> $client_my_id,//CURRENT_USER_ID,
+						);
+			$process_file = $this_upload->upload_add_to_database($add_arguments);
+			die('{"ok":"file restored:'.$file_original.'"}');
+		}
 	}else if($file['uploader'] != $global_account['username']) {
 		die('{"error":"uploader not match:'.$file["uploader"].'"}');
 	}else {
