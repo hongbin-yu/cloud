@@ -38,7 +38,7 @@ if ($_GET) {
 	//$editing->bindParam(':username', $username, PDO::PARAM_STR);
 	$editing->execute();
 	$editing->setFetchMode(PDO::FETCH_ASSOC);
-
+	
 	while ( $data = $editing->fetch() ) {
 		$add_client_data_id			= $data['id'];
 		$add_client_data_name			= $data['name'];
@@ -51,7 +51,7 @@ if ($_GET) {
 		if ($data['notify'] == 1) { $add_client_data_notify_upload = 1; } else { $add_client_data_notify_upload = 0; }
 		if ($data['active'] == 1) { $add_client_data_active = 1; } else { $add_client_data_active = 1; }
 	}
-
+	die("username:".$add_client_data_name);	
 	if(!empty($add_client_data_user)) {
 		/**
 		 * Clean the posted form values to be used on the user actions,
