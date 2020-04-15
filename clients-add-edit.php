@@ -107,6 +107,7 @@ die($username.' before validate');
 		
 		/** Edit the account if validation is correct. */
 		if ($edit_validate == 1) {
+			die($username.' before edit');
 			$edit_response = $edit_client->edit_client($edit_arguments);
 			die($username.' updated'.$edit_response);	
 			$edit_groups = (!empty( $_GET['add_client_group_request'] ) ) ? $_GET['add_client_group_request'] : array();
