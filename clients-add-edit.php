@@ -101,7 +101,7 @@ if ($_GET) {
 		 */
 		$edit_arguments['password'] = (isset($_GET['password'])) ? $_GET['password'] : '';
 		//$edit_arguments['password_repeat'] = (isset($_GET['add_client_form_pass2'])) ? $_GET['add_client_form_pass2'] : '';
-
+die($username.' before validate');
 		/** Validate the information from the posted form. */
 		$edit_validate = $edit_client->validate_client($edit_arguments);
 		
