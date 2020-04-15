@@ -3487,3 +3487,28 @@ msgstr "电话号码"
 #: device-form.php:139
 msgid "Domain"
 msgstr "子域名"
+
+#: file-manage.php:40
+msgid "File does not exists!"
+msgstr "文件不存在云中！"
+
+#: file-manage.php:56
+msgid "file restored."
+msgstr "文件恢复！"
+
+#: file-manage.php:60
+msgid "uploader not match:"
+msgstr "不能修改，上载者不同："
+
+#: file-manage.php:66
+msgid "File name not match:"
+msgstr "文件名不同："
+
+#: file-manage.php:101
+msgid "assign"
+msgstr "分享："
+
+#: file-manage.php:120
+msgid "updated"
+msgstr "已更新"
+
