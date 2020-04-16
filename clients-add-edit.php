@@ -137,7 +137,10 @@ if ($_GET) {
 
 			$memberships->update_membership_requests($arguments);
 			//header("Content-Type: application/json");
-			die($username.' updated');	
+			$msg = __('updated','cftp_admin');
+			die('{"ok":"'.$username.' '.$msg.'"}');
+
+			//die($username.' updated');	
 		}else {
 			header("HTTP/1.0 401 validate fail: ".$username);
 			die('{"error":"user validate fail :'.$username.'"}');			
@@ -203,7 +206,8 @@ if ($_GET) {
 				$memberships->client_add_to_groups($arguments);
 			}
 			header("Content-Type: application/json");
-			die('{"ok":"user added :'.$username.'"}');	
+			$msg = __('user added','cftp_admin');
+			die('{"ok":"'.$msg.' :'.$username.'"}');	
 		}else {
 			header("HTTP/1.0 401 validate fail: ".$add_client_data_email);
 			die('{"error":"user validate fail :'.$username.'"}');	

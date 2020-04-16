@@ -3512,7 +3512,12 @@ msgstr "分享"
 msgid "unassign"
 msgstr "不分享"
 
-#: file-manage.php:120
+#: client-add-edit.php:140
 msgid "updated"
 msgstr "已更新"
+
+#: client-add-edit.php:210
+msgid "user added"
+msgstr "已加入用户"
+
 
