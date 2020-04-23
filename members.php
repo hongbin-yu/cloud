@@ -21,6 +21,7 @@ if(!empty($_GET['nwid'])) {
 	if(is_dir($dir)) {
 		if($dh = opendir($dir)) {
 			while (($file = readdir($dh))!== false) {
+				echo $file;
 				if(endsWith($file,'.json'))
 					echo readfile($dir.'/'.$file);
 			}
