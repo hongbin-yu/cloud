@@ -20,7 +20,7 @@ if(!empty($_GET['nwid'])) {
 		if($dh = opendir($dir)) {
 			while (($file = readdir($dh))!== false) {
 				if(endsWith($file,'.json'))
-					echo readfile($file);
+					echo readfile($dir.'/'.$file);
 			}
 		}
 		closedir($dh);
