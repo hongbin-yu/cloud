@@ -25,8 +25,12 @@ if(!empty($_GET['nwid'])) {
 				if(endsWith($file,'.json'))
 					echo readfile($dir.'/'.$file);
 			}
+		}else {
+			echo $dir." open fail";
 		}
 		closedir($dh);
+	}else {
+		echo $dir.' is not dir';
 	}
 	echo ']';
 }
