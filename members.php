@@ -18,7 +18,7 @@ if(!empty($_GET['nwid'])) {
 	$dir = $ROOT.$_GET['nwid'].'/member';
 
 
-	if(is_readable($dir)) {
+	if(file_exists($dir)) {
 		if(is_dir($dir)) {
 			if($dh = opendir($dir)) {
 				echo '[';
@@ -36,7 +36,7 @@ if(!empty($_GET['nwid'])) {
 			echo $dir.' is not dir';
 		}
 	}else {
-		echo $dir." is not readable";
+		echo $dir." is not exists";
 	}
 
 	
