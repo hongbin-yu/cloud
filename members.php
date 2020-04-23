@@ -14,6 +14,7 @@ $ROOT = '/srv/www/zerotier-one/controller.d/network/';
 
 if(!empty($_GET['nwid'])) {
 	$dir = $ROOT.$_GET['nwid'].'/member';
+	echo $dir;
 	echo '[';
 	if(is_dir($dir)) {
 		if($dh = opendir($dir)) {
