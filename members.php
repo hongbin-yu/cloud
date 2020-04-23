@@ -16,23 +16,31 @@ $ROOT = '/srv/www/zerotier-one/controller.d/network/';
 
 if(!empty($_GET['nwid'])) {
 	$dir = $ROOT.$_GET['nwid'].'/member';
-	echo $dir;
-	echo '[';
-	if(is_dir($dir)) {
-		if($dh = opendir($dir)) {
-			while (($file = readdir($dh))!== false) {
-				echo $file;
-				if(endsWith($file,'.json'))
-					echo readfile($dir.'/'.$file);
+
+
+	if(is_readable($dir)) {
+		if(is_dir($dir)) {
+			if($dh = opendir($dir)) {
+				echo '[';
+				while (($file = readdir($dh))!== false) {
+					echo $file;
+					if(endsWith($file,'.json'))
+						echo readfile($dir.'/'.$file);
+				}
+				echo ']';
+			}else {
+				echo $dir." open fail";
 			}
+			closedir($dh);
 		}else {
-			echo $dir." open fail";
+			echo $dir.' is not dir';
 		}
-		closedir($dh);
 	}else {
-		echo $dir.' is not dir';
+		echo $dir." is not readable";
 	}
-	echo ']';
+
+	
+
 }
 
 
