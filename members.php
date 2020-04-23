@@ -12,26 +12,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$ROOT = '/srv/www/zerotier-one/controller.d/network/';
+$ROOT = $_SERVER['DOCUMENT_ROOT'].'/zerotier-one/controller.d/network/';
 
 if(!empty($_GET['nwid'])) {
-	$dir = $ROOT.$_GET['nwid'].'/member';
-
-
+	$dir = $ROOT.$_GET['nwid'].'/member/';
 	if(file_exists($dir)) {
-		if(is_dir($dir)) {
-			if($dh = opendir($dir)) {
-				echo '[';
-				while (($file = readdir($dh))!== false) {
-					echo $file;
-					if(endsWith($file,'.json'))
-						echo readfile($dir.'/'.$file);
-				}
-				echo ']';
-			}else {
-				echo $dir." open fail";
+		if(is_dir($dir)) { 
+			header("Content-Type: application/json");
+			echo "[";
+			$files = glob($dir.'*.json');
+			foreach($files as $filename) {
+				readfile($filename);
+				if(next($files)) echo ",\r\n"; 
 			}
-			closedir($dh);
+			echo "]";
+
 		}else {
 			echo $dir.' is not dir';
 		}
@@ -39,8 +34,7 @@ if(!empty($_GET['nwid'])) {
 		echo $dir." is not exists";
 	}
 
-	
-
+    
 }
 
 
@@ -48,5 +42,4 @@ if(!empty($_GET['nwid'])) {
 
 
 
-<?php
 

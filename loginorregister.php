@@ -37,7 +37,34 @@ include('header-unlogged.php');
 		$add_client_data_intcont = (isset($_POST["add_client_form_intcont"])) ? encode_html($_POST["add_client_form_intcont"]) : '';
 		$add_client_data_notify_upload = (isset($_POST["add_client_form_notify_upload"])) ? 1 : 0;
 		$add_client_data_group = (isset($_POST["add_client_group_request"])) ? $_POST["add_client_group_request"] : '';
-		
+		/** Look up the system users table to see if the entered username exists */
+		$statement = $dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user= :username OR email= :email");
+		$statement->execute(
+						array(
+							':username'	=> $add_client_data_user,
+							':email'	=> $add_client_data_email,
+						)
+					);
+		$count_user = $statement->rowCount();
+		echo "count=$count_user <br/>";
+		if ($count_user > 0){
+			/** If the username was found on the users table */
+			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			while ( $row = $statement->fetch() ) {
+				$sysuser_username	= $row['user'];
+				$db_pass			= $row['password'];
+				$user_level		= $row["level"];
+				$active_status	= $row['active'];
+				$logged_id		= $row['id'];
+				$global_name		= $row['name'];
+			}
+			$check_password = $hasher->CheckPassword($sysuser_password, $db_pass);
+			if ($check_password) {
+				echo "password match</br/>";
+			}else {
+				echo "password wrong<br/>";
+			}
+		}
 		/** Arguments used on validation and client creation. */
 		$new_arguments = array(
 								'id'		=> '',

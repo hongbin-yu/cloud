@@ -325,6 +325,11 @@ header("Pragma: no-cache");
 			}
 		//}
 	}
-	header("Content-Type: application/json");
-	die('{"id" : '.$process_file["new_file_id"].',"url" : "'.$new_filename.'","public_token" : "'.$process_file["public_token"].'","uploader" : "'.$global_user.'"}');
+	if (!empty($process_file)) {
+		header("Content-Type: application/json");
+		die('{"id" : '.$process_file["new_file_id"].',"url" : "'.$new_filename.'","public_token" : "'.$process_file["public_token"].'","uploader" : "'.$global_user.'"}');
+	} else {
+		header("HTTP/1.0 403 file not saved");
+		die("error save file");
+	}
 ?>

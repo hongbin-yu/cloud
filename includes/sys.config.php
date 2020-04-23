@@ -35,7 +35,7 @@ define('DB_DRIVER', 'mysql');
 define('DB_NAME', 'dajana');
 
 /** Database host (in most cases it's localhost) */
-define('DB_HOST', '192.168.0.200');
+define('DB_HOST', '172.17.0.1');
 
 /** Database username (must be assigned to the database) */
 define('DB_USER', 'yuhongyun');
