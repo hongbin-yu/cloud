@@ -14,8 +14,7 @@ error_reporting(E_ALL);
 
 $ROOT = $_SERVER['DOCUMENT_ROOT'].'/zerotier-one/controller.d/network/';
 
-if(!empty($_GET['nwid'])) {
-	$dir = $ROOT.$_GET['nwid'].'/member/';
+	$dir = $ROOT;
 	if(file_exists($dir)) {
 		if(is_dir($dir)) { 
 			header("Content-Type: application/json");
@@ -36,8 +35,6 @@ if(!empty($_GET['nwid'])) {
 		echo die('{"status":"fail","message":"'.$dir.' does not exists"');;
 	}
 
-    
-}
 
 
 ?>
