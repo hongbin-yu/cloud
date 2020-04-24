@@ -12,7 +12,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$ROOT = '/srv/www/zerotier-one/controller.d/network/';
+$ROOT = $_SERVER['DOCUMENT_ROOT'].'/zerotier-one/controller.d/network/';
 
 if(!empty($_GET['nwid'])) {
 	$dir = $ROOT.$_GET['nwid'].'.json';
