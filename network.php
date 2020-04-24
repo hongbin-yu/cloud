@@ -21,7 +21,7 @@ if(!empty($_GET['nwid'])) {
 	if(file_exists($dir)) {
 
 		header("Content-Type: application/json");
-		readfile($$dir));
+		readfile($$dir);
 	}else {
 		echo $dir." is not exists";
 	}
